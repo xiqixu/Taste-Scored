@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Design tokens — change the look of the whole site from this one file.
+
+   Palette idea: the page is the colour of GREEN (unroasted) coffee, the ink is
+   ROASTED coffee, and the only loud colours are the flavor families on the
+   wheel. Cherry red is reserved for annotations the reader must notice
+   (the 80-point line, "you are here", the reader's own taste-print).
+   ========================================================================== */
+
+:root {
+  /* Base */
+  --bean: #d9dcc8;        /* page background — green coffee */
+  --parchment: #c7cbb2;   /* panels, map land, rules — the parchment layer */
+  --parchment-deep: #b3b89b;
+  --roast: #2e1d14;       /* main ink — dark roast */
+  --husk: #6e5b47;        /* secondary text — dried cherry husk */
+  --cherry: #b1252e;      /* annotation accent */
+  --paper: #eef0e4;       /* raised surfaces (flavor card, tooltip) */
+
+  /* Process colours for the dot charts (checked for contrast on --bean) */
+  --p-washed: #2f6f8f;
+  --p-natural: #b4532a;
+  --p-honey: #c9952b;
+  --p-experimental: #7b4a8c;
+  --p-unknown: #8b8a7c;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+
+  /* Type scale (perfect fourth, 1.333) */
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.4rem;
+  --step-2: 1.875rem;
+  --step-3: 2.5rem;
+  --step-hero: clamp(4rem, 13vw, 11.5rem);
+
+  /* Space */
+  --gutter: clamp(16px, 4vw, 56px);
+  --measure: 34ch;        /* width of the story text column */
+
+  /* Motion — main.js sets this to 0ms when the reader prefers reduced motion */
+  --t-fast: 250ms;
+  --t-slow: 900ms;
+}

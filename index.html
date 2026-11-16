@@ -1,0 +1,198 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Taste, scored</title>
+<meta name="description" content="An interactive data story about the coffee flavor wheel and 207 certified cuppings.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hero-scene.css">
+
+  <!-- D3 v7 as a global `d3` (no build step needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/scene.js"></script>
+
+
+  <!-- ============================================================
+       HERO — the wheel assembles itself once, on page load
+       ============================================================ -->
+  <header class="hero">
+    <div class="hero__text">
+      <h1 class="hero__title">Taste,<br>scored.</h1>
+      <p class="hero__lede">
+        Coffee bags promise blueberry, jasmine, dark chocolate. Here is the map
+        those words come from, and what <span data-stat="lots">207</span>
+        professionally graded coffees say about it.
+      </p>
+      <a class="hero__start" href="#act-wheel">Start reading</a>
+    </div>
+    <div class="hero__wheel" id="hero-wheel" aria-hidden="true"></div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         ACT 1 — A language for taste (zoomable flavor wheel)
+         Each .step has data-state. js/main.js passes it to wheel.setState().
+         ============================================================ -->
+    <section class="act" id="act-wheel" aria-labelledby="act1-title">
+      <header class="act__head">
+        <p class="act__num">Act 1</p>
+        <h2 id="act1-title">A language for taste</h2>
+      </header>
+
+      <div class="scrolly">
+        <figure class="scrolly__figure">
+          <div class="figure__chart" id="wheel"></div>
+          <aside class="flavor-card" id="flavor-card" hidden aria-live="polite"></aside>
+        </figure>
+
+        <div class="scrolly__steps">
+          <div class="step" data-state="families">
+            <p>Professional tasters start with nine broad families. Is it fruity?
+              Roasted? Nutty or chocolatey? Most cups can be placed in a ring
+              this coarse within a sip or two.</p>
+          </div>
+          <div class="step" data-state="groups">
+            <p>Each family splits into narrower groups. “Fruity” becomes berry,
+              citrus, dried fruit, or other fruit.</p>
+          </div>
+          <div class="step" data-state="notes">
+            <p>The outer ring holds the specific words you see on bags:
+              <span data-stat="notes">84</span> of them. Reading from the
+              centre outwards is how tasters are trained to work: general
+              first, specific last.</p>
+          </div>
+          <div class="step" data-state="focus:fruity:blackberry">
+            <p>Follow one family. When a roaster writes “blackberry”, they are
+              placing the coffee here: fruity, then berry, then one exact berry.</p>
+          </div>
+          <div class="step" data-state="explore">
+            <p>Your turn. Click any segment to zoom in, and click the centre to
+              zoom back out.</p>
+            <p class="step__note">The structure is adapted from the SCA &amp; WCR
+              Coffee Taster’s Flavor Wheel (2016) through BeanMap’s open
+              version, which adds a few notes. The drawing is ours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACTS 2 + 3 share ONE sticky dot chart, so the same 207 dots can
+         move from a beeswarm (scores) onto a map (places) and a scatter.
+         Each .step has data-state, passed to dots.setState().
+         ============================================================ -->
+    <section class="act" id="act-dots" aria-labelledby="act2-title">
+      <header class="act__head">
+        <p class="act__num">Act 2</p>
+        <h2 id="act2-title">From words to numbers</h2>
+      </header>
+
+      <div class="scrolly">
+        <figure class="scrolly__figure">
+          <div class="figure__chart" id="dots"></div>
+          <div class="legend" id="dots-legend" hidden></div>
+        </figure>
+
+        <div class="scrolly__steps">
+          <div class="step" data-state="swarm:total">
+            <p>Words describe a coffee. A score judges it. Each dot is one lot
+              of arabica cupped by certified Q graders for the Coffee Quality
+              Institute: <span data-stat="lots">207</span> lots from
+              <span data-stat="countries">22</span> places.</p>
+          </div>
+          <div class="step" data-state="swarm:total:line80">
+            <p>Above 80 points out of 100, a coffee counts as specialty. Only
+              <span data-stat="below80">3</span> lots fall below it. People
+              mostly send their best coffee to be graded, so this is a
+              collection of good coffees, not a sample of all coffee.</p>
+          </div>
+          <div class="step" data-state="swarm:sweetness">
+            <p>The total adds up ten boxes. Some of them hardly vary at all.
+              Every single lot scored 10 out of 10 for sweetness.</p>
+          </div>
+          <div class="step" data-state="swarm:acidity">
+            <p>The real differences live in the boxes graders judge by taste,
+              like acidity. Here the same coffees spread out.</p>
+          </div>
+          <div class="step" data-state="swarm:total:process">
+            <p>Colour each lot by how its cherries were processed. Washed,
+              natural, and honey coffees overlap almost completely.</p>
+          </div>
+
+          <header class="act__head act__head--inline">
+            <p class="act__num">Act 3</p>
+            <h2 id="act3-title">Where flavor comes from</h2>
+          </header>
+
+          <div class="step" data-state="map">
+            <p>The same dots, moved to where each coffee grew.</p>
+          </div>
+          <div class="step" data-state="map:Taiwan">
+            <p>Nearly a third of the lots (<span data-stat="taiwanPct">30%</span>)
+              come from Taiwan, a small producer. That says more about who
+              submits coffee for grading than about where coffee grows.</p>
+          </div>
+          <div class="step" data-state="scatter:altitude:total">
+            <p>Farmers often say higher farms make better coffee. Across the
+              <span data-stat="altitudeKnown">202</span> lots with a recorded
+              altitude, the link is real but weak.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACT 4 — Your cup (free exploration)
+         ============================================================ -->
+    <section class="act act--explore" id="act-yours" aria-labelledby="act4-title">
+      <header class="act__head">
+        <p class="act__num">Act 4</p>
+        <h2 id="act4-title">Your cup</h2>
+        <p class="act__intro">Set the six judged scores the way you’d like a
+          coffee to taste, and we’ll find the graded lots that scored most like
+          it. These are graders’ quality scores, not how strong each quality is,
+          so read the matches as “coffees judged like this”.</p>
+      </header>
+      <div class="taste" id="taste"></div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       CREDITS — the contest asks us to show clearly which parts are
+       our own work and which are third-party.
+       ============================================================ -->
+  <footer class="credits" id="credits">
+    <h2>Data and credits</h2>
+    <div class="credits__cols">
+      <div>
+        <h3>Data</h3>
+        <ul>
+          <li>Cupping scores: Coffee Quality Institute database, via
+            <a href="https://github.com/fatih-boyar/coffee-quality-data-CQI">Fatih Boyar’s May 2023 scrape</a> (MIT).
+            Cleaning rules are in <code>scripts/prepare_data.py</code>.</li>
+          <li>Flavor wheel structure: SCA &amp; World Coffee Research, Coffee
+            Taster’s Flavor Wheel (2016, CC BY-NC-ND 4.0), as encoded in
+            <a href="https://github.com/DouglasC2627/bean-map">BeanMap</a>’s flavor-notes.json (MIT).</li>
+          <li>Country outlines: <a href="https://www.naturalearthdata.com/">Natural Earth</a> 1:110m (public domain).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Our own work</h3>
+        <p>Story, writing, visual design, data cleaning and all chart code.
+          Built with <a href="https://d3js.org">D3.js</a>.</p>
+        <h3>AI assistance</h3>
+        <p>An AI assistant (Claude) helped draft the starter code and copy.
+          The team reviewed and edited all of it.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="status" hidden></div>
+
+</body></html>
