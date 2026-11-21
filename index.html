@@ -9,27 +9,32 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css?v=flavor-notes">
   <link rel="stylesheet" href="css/hero-scene.css">
-  <link rel="stylesheet" href="css/espresso-intro.css?v=espresso-flow">
+  <link rel="stylesheet" href="css/espresso-intro.css?v=autoplay">
   <link rel="stylesheet" href="css/varieties.css?v=fruit-lineage">
+  <link rel="stylesheet" href="css/bean-nav.css?v=left">
 
   <!-- D3 v7 as a global `d3` (no build step needed) -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script type="module" src="js/main.js?v=flavor-notes"></script>
   <script type="module" src="js/scene.js?v=espresso"></script>
-  <script type="module" src="js/espresso-intro.js?v=espresso-first-drop"></script>
+  <script type="module" src="js/espresso-intro.js?v=home-playback"></script>
+  <script type="module" src="js/bean-nav.js?v=beans"></script>
 
-  <section class="espresso-intro" aria-label="Espresso opening">
+  <section class="espresso-intro" aria-label="Espresso opening" hidden>
     <div class="espresso-intro__viewport">
-      <div class="espresso-intro__media" aria-hidden="true">
-        <video class="espresso-intro__video" muted playsinline preload="auto" disablepictureinpicture
-          poster="assets/scene/espresso-intro-wide.webp?v=cafe-film"
-          data-wide-src="assets/scene/espresso-intro-wide.mp4?v=espresso-flow"
-          data-tall-src="assets/scene/espresso-intro-tall.mp4?v=espresso-flow"
-          data-tall-poster="assets/scene/espresso-intro-tall.webp?v=cafe-film"></video>
+      <div class="espresso-intro__shot" aria-hidden="true">
+        <div class="espresso-intro__media">
+          <video class="espresso-intro__video" muted playsinline preload="auto" disablepictureinpicture
+            poster="assets/scene/espresso-intro-wide.webp?v=cafe-film"
+            data-wide-src="assets/scene/espresso-intro-wide.mp4?v=espresso-flow"
+            data-tall-src="assets/scene/espresso-intro-tall.mp4?v=espresso-flow"
+            data-tall-poster="assets/scene/espresso-intro-tall.webp?v=cafe-film"></video>
+        </div>
+        <canvas class="espresso-intro__flow"></canvas>
       </div>
       <div class="espresso-intro__controls">
-        <p>Scroll to brew <span aria-hidden="true">↓</span></p>
-        <a href="#hero">Skip intro</a>
+        <button type="button" class="espresso-intro__play" hidden>Play intro</button>
+        <button type="button" class="espresso-intro__skip">Skip intro</button>
       </div>
     </div>
   </section>
@@ -37,7 +42,7 @@
   <!-- ============================================================
        HERO — the wheel assembles itself once, on page load
        ============================================================ -->
-  <header class="hero" id="hero">
+  <header class="hero" id="hero" tabindex="-1">
     <div class="hero__text">
       <h1 class="hero__title">Taste,<br>scored.</h1>
       <p class="hero__lede">

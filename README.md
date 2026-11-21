@@ -24,9 +24,9 @@ The opening uses three live-action clips under the
 
 - [Tamping coffee for a coffee maker](https://mixkit.co/free-stock-video/tamping-coffee-for-a-coffee-maker-3572/) shows the pressed puck from above.
 - [Person working with the machines in a cafeteria](https://mixkit.co/free-stock-video/person-working-with-the-machines-in-a-cafeteria-41228/) follows the portafilter as it is raised and locked.
-- [Coffee maker making coffee](https://mixkit.co/free-stock-video/coffee-maker-making-coffee-3578/) supplies the extraction. The cut ends when espresso starts to flow. Scrolling continues the stream into the title.
+- [Coffee maker making coffee](https://mixkit.co/free-stock-video/coffee-maker-making-coffee-3578/) supplies the extraction. The edit ends when espresso starts to flow. A timed transition follows the stream into the title.
 
-The site serves locally edited, silent MP4s framed separately for wide and tall viewports, with stills from the first frame. Scrolling advances through the edit.
+The locally edited, silent MP4 plays automatically on the opening page, with separate framing for wide and tall viewports. Readers can skip the intro. Section links and reduced-motion settings open the story directly.
 
 ## Generated illustration
 

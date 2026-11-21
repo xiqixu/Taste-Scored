@@ -1,16 +1,14 @@
 const intro = document.querySelector(".espresso-intro");
+const hero = document.getElementById("hero");
 const viewport = intro.querySelector(".espresso-intro__viewport");
 const video = intro.querySelector("video");
-const flowCanvas = document.createElement("canvas");
-flowCanvas.className = "espresso-intro__flow";
-flowCanvas.setAttribute("aria-hidden", "true");
-intro.querySelector(".espresso-intro__media").after(flowCanvas);
+const playButton = intro.querySelector(".espresso-intro__play");
+const skipButton = intro.querySelector(".espresso-intro__skip");
+const flowCanvas = intro.querySelector("canvas");
 const flow = flowCanvas.getContext("2d");
-const widePoster = video.getAttribute("poster");
-const portrait = matchMedia("(max-aspect-ratio: 1/1)");
+const portrait = matchMedia("(max-aspect-ratio: 1/1)").matches;
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-const frameSeconds = 1 / 24;
-const cutAt = 0.7;
+const transitionMs = 1550;
 
 function interval(progress, start, end) {
   return Math.min(1, Math.max(0, (progress - start) / (end - start)));
@@ -20,9 +18,8 @@ function ease(progress) {
   return progress * progress * (3 - 2 * progress);
 }
 
-function paintFlow(progress, width, height, atCut) {
-  flowCanvas.style.visibility = atCut && progress > 0 && progress < 1 ? "visible" : "hidden";
-  if (!atCut || !flow || progress <= 0 || progress >= 1) return;
+function paintFlow(progress, width, height) {
+  if (!flow || progress <= 0 || progress >= 1) return;
 
   const scale = Math.min(window.devicePixelRatio, 1.5);
   const bitmapWidth = Math.round(width * scale);
@@ -36,7 +33,7 @@ function paintFlow(progress, width, height, atCut) {
 
   // The tip of the real drip in the final frame of each edit. Project through
   // the centered object-fit: cover crop so the drawn continuation meets it.
-  const [frameWidth, frameHeight, tipX, tipY] = portrait.matches
+  const [frameWidth, frameHeight, tipX, tipY] = portrait
     ? [648, 1152, 362, 767]
     : [1440, 810, 744, 630];
   const cover = Math.max(width / frameWidth, height / frameHeight);
@@ -44,7 +41,7 @@ function paintFlow(progress, width, height, atCut) {
   const y = (height - frameHeight * cover) / 2 + tipY * cover;
   const fall = interval(progress, 0, 0.63);
   const length = (height * 0.97 - y) * fall ** 1.48;
-  const tipWidth = Math.max(3, (portrait.matches ? 13 : 10) * cover);
+  const tipWidth = Math.max(3, (portrait ? 13 : 10) * cover);
   const tailX = x - Math.min(10, width * 0.016) * fall;
   const tailY = y + length;
   const fade = 1 - ease(interval(progress, 0.59, 1));
@@ -83,76 +80,85 @@ function paintFlow(progress, width, height, atCut) {
   flow.restore();
 }
 
-let frame;
-function render() {
-  frame = undefined;
-  if (reducedMotion.matches) return;
+function startIntro() {
+  const listeners = new AbortController();
+  const options = { signal: listeners.signal };
+  let frame;
+  let loadingTimer;
+  let transitionStarted;
 
-  const stickyDistance = intro.offsetHeight - viewport.clientHeight;
-  const travelled = -intro.getBoundingClientRect().top;
-  if (stickyDistance <= 0 || travelled > intro.offsetHeight) return;
-
-  const progress = interval(travelled, 0, stickyDistance);
-  const bridge = interval(progress, cutAt, 1);
-  viewport.style.setProperty("--video-opacity", 1 - ease(interval(bridge, 0.25, 0.9)));
-  viewport.style.setProperty("--cue-opacity", 1 - interval(progress, 0.12, 0.32));
-
-  // Finish the latest scroll seek before issuing another one. A seeked event
-  // catches up to the latest scroll position if a frame took longer to decode.
-  const lastFrame = video.duration - frameSeconds;
-  const ready = Number.isFinite(lastFrame) && !video.seeking;
-  const atCut = ready && Math.abs(video.currentTime - lastFrame) < 0.001;
-  paintFlow(bridge, viewport.clientWidth, viewport.clientHeight, atCut);
-  if (!ready) return;
-  const target = interval(progress, 0, cutAt) * lastFrame;
-  const seekThreshold = progress >= cutAt ? 0.001 : frameSeconds / 2;
-  if (Math.abs(video.currentTime - target) >= seekThreshold) video.currentTime = target;
-}
-
-function requestRender() {
-  if (frame === undefined) frame = requestAnimationFrame(render);
-}
-
-let selectedSource;
-let download;
-let objectUrl;
-async function chooseVideo() {
-  const source = reducedMotion.matches ? null : (portrait.matches ? video.dataset.tallSrc : video.dataset.wideSrc);
-  if (source === selectedSource) return;
-  selectedSource = source;
-  download?.abort();
-
-  video.poster = portrait.matches ? video.dataset.tallPoster : widePoster;
-  if (video.hasAttribute("src")) {
+  function finish() {
+    if (intro.hidden) return;
+    const moveFocus = intro.contains(document.activeElement);
+    listeners.abort();
+    if (frame !== undefined) cancelAnimationFrame(frame);
+    clearTimeout(loadingTimer);
+    intro.hidden = true;
+    document.body.classList.remove("has-espresso-intro");
+    hero.style.removeProperty("--espresso-arrival");
+    video.pause();
     video.removeAttribute("src");
     video.load();
+    if (moveFocus) hero.focus({ preventScroll: true });
   }
-  if (objectUrl) {
-    URL.revokeObjectURL(objectUrl);
-    objectUrl = undefined;
-  }
-  if (!source) return;
 
-  // Download only the chosen edit. Seeking then works on local static servers
-  // that return the whole file even when the video element requests a range.
-  const controller = new AbortController();
-  download = controller;
-  try {
-    const response = await fetch(source, { signal: controller.signal });
-    if (!response.ok) throw new Error(`Video download returned ${response.status}`);
-    const clip = await response.blob();
-    if (controller.signal.aborted) return;
-    objectUrl = URL.createObjectURL(clip);
-    video.src = objectUrl;
-  } catch (error) {
-    if (!controller.signal.aborted) video.src = source;
+  async function play() {
+    if (document.activeElement === playButton) skipButton.focus({ preventScroll: true });
+    playButton.hidden = true;
+    loadingTimer = setTimeout(finish, 8000);
+    try {
+      await video.play();
+    } catch (error) {
+      if (intro.hidden) return;
+      if (error.name === "NotAllowedError") playButton.hidden = false;
+      else finish();
+    } finally {
+      clearTimeout(loadingTimer);
+    }
   }
+
+  function descend(now) {
+    transitionStarted ??= now;
+    const progress = interval(now - transitionStarted, 0, transitionMs);
+    if (progress === 1) {
+      finish();
+      return;
+    }
+
+    const width = viewport.clientWidth;
+    const height = viewport.clientHeight;
+    const camera = ease(interval(progress, 0.1, 1));
+    viewport.style.setProperty("--camera-offset", `${-height * 0.8 * camera}px`);
+    viewport.style.setProperty("--frame-edge", `${100 - 32 * camera}%`);
+    viewport.style.setProperty("--video-opacity", 1 - ease(interval(progress, 0.27, 0.95)));
+    hero.style.setProperty("--espresso-arrival", `${height * 0.18 * (1 - camera)}px`);
+    paintFlow(progress, width, height);
+    frame = requestAnimationFrame(descend);
+  }
+
+  playButton.addEventListener("click", play, options);
+  skipButton.addEventListener("click", finish, options);
+  video.addEventListener("ended", () => { frame = requestAnimationFrame(descend); }, options);
+  video.addEventListener("error", finish, options);
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 1) finish();
+  }, { ...options, passive: true });
+  window.addEventListener("hashchange", finish, options);
+  window.addEventListener("pagehide", finish, options);
+  document.addEventListener("focusin", (event) => {
+    if (!intro.contains(event.target)) finish();
+  }, options);
+  reducedMotion.addEventListener("change", finish, options);
+
+  if (portrait) video.poster = video.dataset.tallPoster;
+  video.src = portrait ? video.dataset.tallSrc : video.dataset.wideSrc;
+  intro.hidden = false;
+  document.body.classList.add("has-espresso-intro");
+  play();
 }
 
-window.addEventListener("scroll", requestRender, { passive: true });
-window.addEventListener("resize", requestRender);
-video.addEventListener("loadedmetadata", requestRender);
-video.addEventListener("seeked", requestRender);
-portrait.addEventListener("change", chooseVideo);
-reducedMotion.addEventListener("change", chooseVideo);
-chooseVideo();
+const navigation = performance.getEntriesByType("navigation")[0];
+const opensAtHome = !location.hash || location.hash === "#hero";
+if (!reducedMotion.matches && opensAtHome && window.scrollY <= 1 && navigation?.type !== "back_forward") {
+  startIntro();
+}
