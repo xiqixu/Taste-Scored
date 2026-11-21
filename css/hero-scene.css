@@ -4,7 +4,7 @@
    2. Act 1 wheel sits next to its text on wide screens
    3. The highland landscape behind the home page (drawn by js/scene.js)
    4. Off-white home-page text when the photo is used
-   5. Act 4 ("Your cup"): Colombian valley photo behind the taste-print
+   5. Act 5 ("Your cup"): Colombian valley photo behind the taste-print
    ========================================================================== */
 
 /* ---------- 1. Hero wheel ------------------------------------------------
@@ -104,7 +104,7 @@
 }
 .has-hero-photo .hero__start:focus-visible { outline-color: var(--on-photo); }
 
-/* ---------- 5. Act 4 landscape -------------------------------------------
+/* ---------- 5. Act 5 landscape -------------------------------------------
    The Cocora valley photo sits behind the whole section. A top-to-bottom
    mask makes it see-through at the top, so its cloudy sky melts into the
    page colour behind the heading, and fuller towards the bottom, where the

@@ -179,8 +179,8 @@ let ticking = false;
 function update() {
   ticking = false;
   const H = window.innerHeight;
-  // p = 0 at the top of the page, 1 when the hero has scrolled away.
-  const p = Math.max(0, window.scrollY / Math.max(1, hero.offsetHeight));
+  // Measure from the title, which follows the espresso opening.
+  const p = Math.max(0, -hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight));
   for (const [name, { base, speed }] of Object.entries(LAYERS)) {
     const s = reducedMotion ? 1 : speed;
     els[name].style.transform = `translate3d(0, ${((base - s * p) * H).toFixed(1)}px, 0)`;

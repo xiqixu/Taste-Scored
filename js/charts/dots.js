@@ -1,8 +1,7 @@
-// dots.js — one circle per coffee lot. The SAME circles move between three
-// layouts, which is what makes the story feel continuous:
+// dots.js — one circle per coffee lot, reused across the score charts.
 //
 //   "swarm:<score>[:line80|:process]"   beeswarm along one score
-//   "map[:<Country>]"                   clustered on each origin country
+//   "production"                        move to origins and yield to production symbols
 //   "scatter:<x>:<y>"                   scatterplot of two numbers
 //
 // Beeswarm technique: d3.forceSimulation with forceX + forceCollide, run
@@ -18,13 +17,10 @@ const DOMAINS = {
   default: [6.5, 10], // every 0–10 sub-score
 };
 
-// Hawaii is part of the USA polygon; put its dots on the islands instead.
-const POINT_OVERRIDES = { "Hawaii (USA)": [-155.5, 19.6] };
-
-export function createDots(container, lots, world, { legend } = {}) {
+export function createDots(container, lots, { legend, mapPoints, cherryLot } = {}) {
   const color = processColor();
+  const countsByProcess = d3.rollup(lots, (group) => group.length, (lot) => lot.process);
   const svg = d3.select(container).append("svg").attr("role", "img");
-  const gLand = svg.append("g").attr("opacity", 0);
   const gAxes = svg.append("g").attr("class", "axis");
   const gAnno = svg.append("g").attr("class", "annotation");
   const gDots = svg.append("g");
@@ -38,6 +34,7 @@ export function createDots(container, lots, world, { legend } = {}) {
     .selectAll("circle")
     .data(lots, (d) => d.id)
     .join("circle")
+    .attr("data-cherry-source", (d) => d === cherryLot ? "" : null)
     .attr("stroke", "var(--bean)")
     .attr("stroke-width", 0.75)
     .on("pointerenter", (event, d) =>
@@ -45,46 +42,31 @@ export function createDots(container, lots, world, { legend } = {}) {
     .on("pointermove", (event, d) =>
       showTooltip(event, `<strong>${d.countryLabel}</strong><br>${d.variety}<br>${d.process}<br>Total ${d.total.toFixed(2)}${d.altitude ? `<br>${d.altitude} m` : ""}`))
     .on("pointerleave", hideTooltip);
+  const cherryDot = circles.filter((d) => d === cherryLot).node();
 
-  // ---- Scales & projection (rebuilt on resize) ----------------------------
+  // ---- Scales (rebuilt on resize) ------------------------------------------
   const xScale = (key) =>
     d3.scaleLinear(DOMAINS[key] ?? DOMAINS.default, [margin.left + 40, W - margin.right - 70]);
   const yScale = (key) =>
     d3.scaleLinear(DOMAINS[key] ?? DOMAINS.default, [H - margin.bottom, margin.top]);
-  let projection, geoPath;
-
-  function buildMap() {
-    projection = d3.geoNaturalEarth1().fitExtent(
-      [[margin.left / 2, margin.top], [W - margin.right, H - margin.bottom]],
-      { type: "MultiPoint", coordinates: [[-160, -30], [132, 33]] } // the coffee belt
-    );
-    geoPath = d3.geoPath(projection);
-    const inData = new Set(lots.map((d) => d.country));
-    gLand
-      .selectAll("path")
-      .data(world.features)
-      .join("path")
-      .attr("d", geoPath)
-      .attr("fill", (f) => (inData.has(f.properties.name) ? "var(--parchment-deep)" : "var(--parchment)"))
-      .attr("stroke", "var(--bean)")
-      .attr("stroke-width", 0.6);
-  }
 
   // ---- Layouts: return Map(id → {x, y, hidden}) ----------------------------
-  // targets(d) → {tx, ty, hidden?}. Strong x-pull + weak y-pull = beeswarm;
-  // equal pulls = round clusters (used for the map).
-  function simulate(targets, { xPull = 0.8, yPull = 0.08 } = {}) {
-    const nodes = lots.map((d) => ({ id: d.id, ...targets(d) }));
-    const live = nodes.filter((n) => !n.hidden);
-    live.forEach((n, i) => { n.x = n.tx + (i % 7) - 3; n.y = n.ty + (i % 5) - 2; });
+  function simulate(x, key) {
+    const y = H / 2 + 10;
+    const nodes = lots.map((d, i) => ({
+      id: d.id,
+      tx: x(d[key]),
+      x: x(d[key]) + (i % 7) - 3,
+      y: y + (i % 5) - 2,
+    }));
     const sim = d3
-      .forceSimulation(live)
-      .force("x", d3.forceX((n) => n.tx).strength(xPull))
-      .force("y", d3.forceY((n) => n.ty).strength(yPull))
+      .forceSimulation(nodes)
+      .force("x", d3.forceX((n) => n.tx).strength(0.8))
+      .force("y", d3.forceY(y).strength(0.08))
       .force("collide", d3.forceCollide(R + 0.7))
       .stop();
     for (let i = 0; i < 240; i++) sim.tick();
-    return new Map(nodes.map((n) => [n.id, n.hidden ? { x: n.tx, y: n.ty, hidden: true } : n]));
+    return new Map(nodes.map((n) => [n.id, n]));
   }
 
   function layout(key) {
@@ -93,16 +75,7 @@ export function createDots(container, lots, world, { legend } = {}) {
     let result;
 
     if (mode === "swarm") {
-      const x = xScale(a);
-      result = simulate((d) => ({ tx: x(d[a]), ty: H / 2 + 10 }));
-    }
-
-    if (mode === "map") {
-      const centroids = new Map(world.features.map((f) => [f.properties.name, projection(d3.geoCentroid(f))]));
-      result = simulate((d) => {
-        const p = POINT_OVERRIDES[d.countryLabel] ? projection(POINT_OVERRIDES[d.countryLabel]) : centroids.get(d.country);
-        return p ? { tx: p[0], ty: p[1] } : { tx: W / 2, ty: H - 20, hidden: true };
-      }, { xPull: 0.25, yPull: 0.25 });
+      result = simulate(xScale(a), a);
     }
 
     if (mode === "scatter") {
@@ -116,34 +89,41 @@ export function createDots(container, lots, world, { legend } = {}) {
     return result;
   }
 
+  function productionLayout() {
+    const { left, top } = svg.node().getBoundingClientRect();
+    const points = mapPoints(lots);
+    return new Map(lots.map((d, index) => {
+      const point = points[index];
+      return [d.id, point
+        ? { x: point[0] - left, y: point[1] - top }
+        : { x: W / 2, y: H / 2 }];
+    }));
+  }
+
   // ---- Drawing -------------------------------------------------------------
   function draw(duration) {
     const [mode, a, b] = state.split(":");
-    // Layout key ignores style-only suffixes like ":line80" or ":Taiwan".
-    const pos = layout(mode === "map" ? "map" : mode === "scatter" ? `scatter:${a}:${b}` : `swarm:${a}`);
+    // Layout key ignores style-only suffixes like ":line80".
+    const pos = mode === "production" ? productionLayout() : layout(
+      mode === "scatter" ? `scatter:${a}:${b}` : `swarm:${a}`
+    );
     const t = svg.transition().duration(duration).ease(d3.easeCubicInOut);
 
     // Dots
-    const highlight = mode === "map" && a ? a : null;
     circles
       .attr("r", R)
       .transition(t)
       .delay((d) => (duration ? (d.id % 40) * 6 : 0))
       .attr("cx", (d) => pos.get(d.id).x)
       .attr("cy", (d) => pos.get(d.id).y)
-      .attr("opacity", (d) => {
-        if (pos.get(d.id).hidden) return 0;
-        if (highlight) return d.countryLabel === highlight ? 1 : 0.25;
-        return 0.9;
+      .attrTween("opacity", function (d) {
+        const visible = mode !== "production" && !pos.get(d.id).hidden;
+        const opacity = Number(this.getAttribute("opacity") ?? 0);
+        const interpolate = d3.interpolateNumber(opacity, visible ? 0.9 : 0);
+        // Let the cupping dots travel before the production bubbles take over.
+        return mode === "production" ? (t) => interpolate(Math.max(0, (t - 0.45) / 0.55)) : interpolate;
       })
-      .attr("fill", (d) => {
-        if (b === "process" && mode === "swarm") return color(d.process);
-        if (highlight && d.countryLabel === highlight) return "var(--cherry)";
-        return "var(--roast)";
-      });
-
-    // Land
-    gLand.transition(t).attr("opacity", mode === "map" ? 1 : 0);
+      .attr("fill", (d) => b === "process" && mode === "swarm" ? color(d.process) : "var(--roast)");
 
     // Axes
     gAxes.selectAll("*").remove();
@@ -183,12 +163,6 @@ export function createDots(container, lots, world, { legend } = {}) {
           .text(`All ${lots.length} lots: ${hi.toFixed(1)}`);
       }
     }
-    if (mode === "map" && highlight) {
-      const pts = lots.filter((d) => d.countryLabel === highlight).map((d) => pos.get(d.id));
-      const cx = d3.mean(pts, (p) => p.x), top = d3.min(pts, (p) => p.y);
-      gAnno.append("text").attr("x", cx).attr("y", top - 12).attr("text-anchor", "middle")
-        .text(`${highlight}: ${pts.length} lots`);
-    }
     if (mode === "scatter") {
       const valid = lots.filter((d) => d[a] != null && d[b] != null);
       const r = pearson(valid.map((d) => d[a]), valid.map((d) => d[b]));
@@ -212,17 +186,17 @@ export function createDots(container, lots, world, { legend } = {}) {
       legend.hidden = !showLegend;
       if (showLegend) {
         legend.innerHTML = color.domain()
-          .map((g) => `<span><i style="background:${color(g)}"></i>${g}</span>`)
+          .map((g) => `<span><i style="background:${color(g)}"></i>${g} (${countsByProcess.get(g) ?? 0})</span>`)
           .join("");
       }
     }
 
-    svg.attr("aria-label", describe(mode, a, b));
+    svg.attr("data-view", state).attr("aria-label", describe(mode, a, b));
   }
 
   function describe(mode, a, b) {
     if (mode === "swarm") return `Beeswarm of ${lots.length} coffee lots by ${SCORE_LABELS[a]}`;
-    if (mode === "map") return `Map of ${lots.length} coffee lots by origin country`;
+    if (mode === "production") return "Cupping lots moving to their origins";
     return `Scatterplot of ${SCORE_LABELS[a]} against ${SCORE_LABELS[b]}`;
   }
 
@@ -231,11 +205,15 @@ export function createDots(container, lots, world, { legend } = {}) {
     R = Math.max(2.5, Math.min(6, W / 150));
     svg.attr("viewBox", [0, 0, W, H]);
     cache.clear();
-    buildMap();
     draw(0);
   });
 
   return {
+    cherryPoint() {
+      if (!cherryDot || !W) return null;
+      const { left, top, width, height } = cherryDot.getBoundingClientRect();
+      return { x: left + width / 2, y: top + height / 2, diameter: width };
+    },
     setState(next) {
       if (next === state && W) return;
       state = next;

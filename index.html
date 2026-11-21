@@ -7,19 +7,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=flavor-notes">
   <link rel="stylesheet" href="css/hero-scene.css">
+  <link rel="stylesheet" href="css/espresso-intro.css?v=espresso-flow">
+  <link rel="stylesheet" href="css/varieties.css?v=fruit-lineage">
 
   <!-- D3 v7 as a global `d3` (no build step needed) -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-  <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/scene.js"></script>
+  <script type="module" src="js/main.js?v=flavor-notes"></script>
+  <script type="module" src="js/scene.js?v=espresso"></script>
+  <script type="module" src="js/espresso-intro.js?v=espresso-first-drop"></script>
 
+  <section class="espresso-intro" aria-label="Espresso opening">
+    <div class="espresso-intro__viewport">
+      <div class="espresso-intro__media" aria-hidden="true">
+        <video class="espresso-intro__video" muted playsinline preload="auto" disablepictureinpicture
+          poster="assets/scene/espresso-intro-wide.webp?v=cafe-film"
+          data-wide-src="assets/scene/espresso-intro-wide.mp4?v=espresso-flow"
+          data-tall-src="assets/scene/espresso-intro-tall.mp4?v=espresso-flow"
+          data-tall-poster="assets/scene/espresso-intro-tall.webp?v=cafe-film"></video>
+      </div>
+      <div class="espresso-intro__controls">
+        <p>Scroll to brew <span aria-hidden="true">↓</span></p>
+        <a href="#hero">Skip intro</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================================
        HERO — the wheel assembles itself once, on page load
        ============================================================ -->
-  <header class="hero">
+  <header class="hero" id="hero">
     <div class="hero__text">
       <h1 class="hero__title">Taste,<br>scored.</h1>
       <p class="hero__lede">
@@ -82,9 +100,7 @@
     </section>
 
     <!-- ============================================================
-         ACTS 2 + 3 share ONE sticky dot chart, so the same 207 dots can
-         move from a beeswarm (scores) onto a map (places) and a scatter.
-         Each .step has data-state, passed to dots.setState().
+         ACTS 2–4 share a sticky figure so a cup-score dot can become a cherry.
          ============================================================ -->
     <section class="act" id="act-dots" aria-labelledby="act2-title">
       <header class="act__head">
@@ -94,8 +110,109 @@
 
       <div class="scrolly">
         <figure class="scrolly__figure">
-          <div class="figure__chart" id="dots"></div>
-          <div class="legend" id="dots-legend" hidden></div>
+          <div class="figure__chart" id="cup-score-charts">
+            <div class="figure__chart" id="dots"></div>
+            <div class="legend" id="dots-legend" hidden></div>
+          </div>
+          <div class="cherry-scene" id="cherry-scene" aria-hidden="true">
+            <div class="cherry-scene__plate">
+              <img src="assets/scene/arabica-branch.webp" width="1536" height="1024" alt="" decoding="async">
+              <div class="cherry-scene__stem"></div>
+              <div class="cherry-scene__fruit"></div>
+              <div class="cherry-scene__split">
+                <div class="cherry-scene__half"></div>
+                <div class="cherry-scene__half"></div>
+              </div>
+            </div>
+          </div>
+          <section class="process-panel" id="process-panel" aria-labelledby="process-title" aria-hidden="true" inert>
+            <h3 id="process-title">What goes to drying?</h3>
+            <div class="process-panel__controls" role="group" aria-label="Coffee processing method">
+              <button type="button" data-method="washed" aria-pressed="true">Washed</button>
+              <button type="button" data-method="natural" aria-pressed="false">Natural</button>
+              <button type="button" data-method="honey" aria-pressed="false">Honey</button>
+            </div>
+            <div class="process-panel__comparison" aria-hidden="true">
+              <div><div class="process-panel__cherry" data-cutaway="fresh"></div><span>Fresh cherry half</span></div>
+              <span class="process-panel__arrow">→</span>
+              <div><div class="process-panel__cherry" data-cutaway="drying"></div><span>Layers at drying</span></div>
+            </div>
+            <ul class="process-panel__layers" aria-label="Layers in the cross-section">
+              <li data-layer="fruit">Skin and pulp</li>
+              <li data-layer="mucilage">Mucilage</li>
+              <li data-layer="parchment">Parchment</li>
+              <li data-layer="seed">Seed</li>
+            </ul>
+            <p class="process-panel__explanation" aria-live="polite"></p>
+            <button class="process-panel__replay" type="button">Replay animation</button>
+            <template id="cherry-cutaway-template">
+              <div class="cherry-cutaway">
+                <div class="cherry-cutaway__face">
+                  <div class="cherry-cutaway__fruit"></div>
+                  <div class="cherry-cutaway__pair">
+                    <i class="cherry-cutaway__seed"></i>
+                    <i class="cherry-cutaway__seed"></i>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </section>
+          <div class="coffee-map production-map" id="production-map" aria-hidden="true" inert>
+            <h3 id="production-title">Green coffee bean production <span>· <span id="production-year-label">2024</span></span></h3>
+            <div class="coffee-map__graphic production-map__graphic">
+              <span id="production-region-name" class="production-map__region" aria-live="polite" hidden></span>
+            </div>
+            <div class="production-map__key">
+              <span>Circle area represents tonnes</span>
+              <div class="production-map__sizes" aria-hidden="true"></div>
+              <span class="production-map__locator-key" hidden>Rings locate small producers</span>
+            </div>
+            <div class="production-map__details" hidden>
+              <dl>
+                <div><dt>Origin</dt><dd data-profile="origin"></dd></div>
+                <div><dt data-profile="year"></dt><dd data-profile="tonnes" aria-live="polite"></dd></div>
+                <div><dt>Sample varieties</dt><dd data-profile="varieties"></dd></div>
+                <div><dt>Sample tasting notes</dt><dd data-profile="tastingNotes"></dd></div>
+              </dl>
+              <p class="production-map__example" hidden><span></span><a></a></p>
+            </div>
+            <div class="coffee-map__timeline">
+              <span class="production-map__first-year" aria-hidden="true"></span>
+              <input type="range" id="production-year" aria-label="Production year">
+              <span class="production-map__last-year" aria-hidden="true"></span>
+            </div>
+            <div class="coffee-map__lookup production-map__lookup">
+              <select id="production-producer" aria-label="Find a coffee producer">
+                <option value="">Find a producer</option>
+              </select>
+              <output for="production-producer production-year" aria-live="polite"></output>
+              <button id="production-back" type="button" hidden>World view</button>
+            </div>
+          </div>
+          <div class="coffee-map trade-map" id="trade-map" aria-hidden="true" inert>
+            <h3 id="trade-title">Green coffee trade <span>· <span id="trade-year-label">2024</span></span></h3>
+            <div class="coffee-map__graphic trade-map__graphic"></div>
+            <div class="trade-map__key">
+              <span id="trade-route-count"></span>
+              <span>Thicker lines mean more tonnes</span>
+            </div>
+            <div class="coffee-map__timeline">
+              <span id="trade-first-year" aria-hidden="true"></span>
+              <input type="range" id="trade-year" aria-label="Trade year">
+              <span id="trade-last-year" aria-hidden="true"></span>
+            </div>
+            <div class="coffee-map__lookup trade-map__filters">
+              <select id="trade-area" aria-label="Trading area">
+                <option value="">World overview</option>
+              </select>
+              <select id="trade-direction" aria-label="Trade direction" disabled>
+                <option value="exports">Exports</option>
+                <option value="imports">Imports</option>
+              </select>
+              <button id="trade-replay" type="button" aria-label="Replay trade routes">Replay</button>
+            </div>
+            <output class="trade-map__detail" aria-live="polite"></output>
+          </div>
         </figure>
 
         <div class="scrolly__steps">
@@ -119,40 +236,73 @@
             <p>The real differences live in the boxes graders judge by taste,
               like acidity. Here the same coffees spread out.</p>
           </div>
-          <div class="step" data-state="swarm:total:process">
-            <p>Colour each lot by how its cherries were processed. Washed,
-              natural, and honey coffees overlap almost completely.</p>
+          <div class="step" id="act2-process-scores" data-state="swarm:total:process">
+            <p>Each coloured dot is one cup-tested lot. The legend counts the
+              lots in each processing group, and the horizontal axis shows
+              their total cup scores. Notice how the three main groups overlap
+              in these <span data-stat="lots">207</span> samples.</p>
           </div>
 
           <header class="act__head act__head--inline">
             <p class="act__num">Act 3</p>
-            <h2 id="act3-title">Where flavor comes from</h2>
+            <h2 id="act3-title">Where coffee grows</h2>
           </header>
 
-          <div class="step" data-state="map">
-            <p>The same dots, moved to where each coffee grew.</p>
+          <div class="step" id="act3-production" data-state="production">
+            <p>In 2024, Brazil and Vietnam grew nearly half of the world’s green
+              coffee. Move the slider to see how harvests changed since 1961.
+              Each circle represents one country or territory.</p>
+            <p class="step__note">Click a country to zoom into its continent, then click again for a closer look.
+              Hover over a country or dot for its annual tonnage.
+              Data from <a href="https://www.fao.org/faostat/en/#data/QCL">FAOSTAT</a>,
+              cross-checked against <a href="https://ourworldindata.org/grapher/coffee-bean-production">Our World in Data</a>.</p>
           </div>
-          <div class="step" data-state="map:Taiwan">
-            <p>Nearly a third of the lots (<span data-stat="taiwanPct">30%</span>)
-              come from Taiwan, a small producer. That says more about who
-              submits coffee for grading than about where coffee grows.</p>
+          <div class="step" id="act3-trade" data-state="trade">
+            <p>Where do the beans go after harvest? Each arrow connects an
+              exporter to an importer. Move the year slider or choose a trading
+              area to explore its largest routes.</p>
+            <p class="step__note">Select an arrow for its tonnage. The lines
+              connect trading partners and show direction. Source:
+              <a href="https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37">CEPII BACI</a>,
+              based on UN Comtrade.</p>
           </div>
-          <div class="step" data-state="scatter:altitude:total">
-            <p>Farmers often say higher farms make better coffee. Across the
-              <span data-stat="altitudeKnown">202</span> lots with a recorded
-              altitude, the link is real but weak.</p>
+          <div class="step" id="act3-altitude" data-state="scatter:altitude:total">
+            <p>Back to the cup: do coffees grown higher up score better?
+              Among the <span data-stat="altitudeKnown">202</span> CQI lots
+              with recorded altitude, higher elevation was weakly associated
+              with higher scores.</p>
+            <p class="step__note">Follow the highest point, a <span data-stat="cherryVariety">Castillo</span>
+              lot from <span data-stat="cherryOrigin">Colombia</span> that scored
+              <span data-stat="cherryScore">89.33</span>.</p>
+          </div>
+
+          <div class="step" id="act4-cherry" data-state="cherry">
+            <header class="act__head act__head--inline">
+              <p class="act__num">Act 4</p>
+              <h2 id="act4-title">From cherry to bean</h2>
+            </header>
+            <p>Wild Arabica grows in the forests of southwestern Ethiopia and on
+              the Boma Plateau in South Sudan. The earliest documented cultivation
+              dates to around the 15th century in Yemen.</p>
+            <p class="step__note"><a href="https://doi.org/10.3389/fsufs.2021.761611">Research on Arabica’s wild origins</a></p>
+          </div>
+          <div class="step" id="act4-processing" data-state="processing">
+            <p>Inside a coffee cherry are usually two seeds. Those are the beans
+              we roast. Choose a processing method to see which layers surround
+              the seeds as they dry.</p>
           </div>
         </div>
       </div>
+      <section class="varieties" id="act4-varieties" aria-labelledby="varieties-title"></section>
     </section>
 
     <!-- ============================================================
-         ACT 4 — Your cup (free exploration)
+         ACT 5 — Your cup (free exploration)
          ============================================================ -->
-    <section class="act act--explore" id="act-yours" aria-labelledby="act4-title">
+    <section class="act act--explore" id="act-yours" aria-labelledby="act5-title">
       <header class="act__head">
-        <p class="act__num">Act 4</p>
-        <h2 id="act4-title">Your cup</h2>
+        <p class="act__num">Act 5</p>
+        <h2 id="act5-title">Your cup</h2>
         <p class="act__intro">Set the six judged scores the way you’d like a
           coffee to taste, and we’ll find the graded lots that scored most like
           it. These are graders’ quality scores, not how strong each quality is,
@@ -175,11 +325,26 @@
         <ul>
           <li>Cupping scores: Coffee Quality Institute database, via
             <a href="https://github.com/fatih-boyar/coffee-quality-data-CQI">Fatih Boyar’s May 2023 scrape</a> (MIT).
-            Cleaning rules are in <code>scripts/prepare_data.py</code>.</li>
+            This story uses <a href="data/cqi-2023.json">207 prepared Arabica lot records</a>.</li>
+          <li>Green coffee production, 1961–2024: <a href="https://www.fao.org/faostat/en/#data/QCL">FAOSTAT (QCL)</a>,
+            cross-checked against <a href="https://ourworldindata.org/grapher/coffee-bean-production">Our World in Data</a>.
+            The map shows countries and territories with published production figures.</li>
+          <li>Coffee examples: <a href="https://github.com/alexcaza/firstbloom-data">Firstbloom Data</a> by Alex Caza
+            (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), with supplementary CQI lot records.</li>
+          <li>Processing illustration informed by the
+            <a href="https://nov.ugandacoffee.go.ug/index.php/node/75">Uganda Coffee Development Authority</a>
+            and <a href="https://doi.org/10.3390/agriengineering6030129">Moon et al. (2024)</a>.</li>
+          <li>Green coffee trade, 1995–2024: Gaulier and Zignago,
+            <a href="https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37">CEPII BACI</a>
+            (HS92 v202601, based on UN Comtrade). The map uses tonnes for HS 090111 and 090112.</li>
           <li>Flavor wheel structure: SCA &amp; World Coffee Research, Coffee
             Taster’s Flavor Wheel (2016, CC BY-NC-ND 4.0), as encoded in
             <a href="https://github.com/DouglasC2627/bean-map">BeanMap</a>’s flavor-notes.json (MIT).</li>
           <li>Country outlines: <a href="https://www.naturalearthdata.com/">Natural Earth</a> 1:110m (public domain).</li>
+          <li>The espresso opening uses <a href="https://mixkit.co/free-stock-video/tamping-coffee-for-a-coffee-maker-3572/">tamping</a>,
+            <a href="https://mixkit.co/free-stock-video/person-working-with-the-machines-in-a-cafeteria-41228/">portafilter setup</a>
+            and <a href="https://mixkit.co/free-stock-video/coffee-maker-making-coffee-3578/">extraction</a> footage under the
+            <a href="https://mixkit.co/license/#videoFree">Mixkit Stock Video Free License</a>.</li>
         </ul>
       </div>
       <div>
@@ -188,7 +353,7 @@
           Built with <a href="https://d3js.org">D3.js</a>.</p>
         <h3>AI assistance</h3>
         <p>An AI assistant (Claude) helped draft the starter code and copy.
-          The team reviewed and edited all of it.</p>
+          The team reviewed and edited all of it. The Arabica branch in Act 4 was generated with OpenAI ImageGen.</p>
       </div>
     </div>
   </footer>

@@ -1,4 +1,4 @@
-// tasteprint.js — Act 4. The reader sets six scores with sliders; we draw
+// tasteprint.js — Act 5. The reader sets six scores with sliders; we draw
 // their "taste-print" on a radar chart and list the graded lots whose scores
 // are closest (straight-line / Euclidean distance across the six scores).
 
@@ -8,11 +8,28 @@ const AXES = ["aroma", "flavor", "aftertaste", "acidity", "body", "balance"];
 const LABELS = { aroma: "Aroma", flavor: "Flavor", aftertaste: "Aftertaste", acidity: "Acidity", body: "Body", balance: "Balance" };
 const MIN = 6.5, MAX = 8.75, STEP = 0.25;
 const TOP_N = 5;
+const listFormat = new Intl.ListFormat("en");
+const FIRSTBLOOM = "https://github.com/alexcaza/firstbloom-data/tree/a6cb0026d1af9642724793c799bbc48dc189ba35";
+const ROASTER_REFERENCES = {
+  Taiwan: {
+    example: "Alishan Ruili Washed",
+    region: "Alishan",
+    tastingNotes: ["Peach", "Citrus", "Plum", "Honey"],
+    source: "Fujin Coffee",
+    url: "https://www.fujincoffee.com.tw/products/f20250701104",
+  },
+  Vietnam: {
+    example: "Đà Lạt Serie 2 – Datanla",
+    region: "Đà Lạt",
+    tastingNotes: ["Nougat", "Dark chocolate", "Fruit"],
+    source: "Là Việt Coffee",
+    url: "https://laviet.coffee/san-pham/da-lat-serie-2-datanla/",
+  },
+};
 
-export function createTastePrint(container, lots) {
+export function createTastePrint(container, lots, profilesByOrigin) {
   const medians = Object.fromEntries(AXES.map((k) => [k, roundToStep(d3.median(lots, (d) => d[k]))]));
   const you = { ...medians };
-  let selectedId = null;
 
   // ---- DOM skeleton ---------------------------------------------------------
   container.innerHTML = `
@@ -30,16 +47,29 @@ export function createTastePrint(container, lots) {
     <div class="taste__matches">
       <h3>Closest graded lots</h3>
       <ol></ol>
+      <div class="taste__notes" id="taste-notes" aria-live="polite">
+        <p class="taste__lot-profile"></p>
+        <div class="taste__reference">
+          <h4>Tasting notes from another coffee</h4>
+          <p class="taste__descriptors"></p>
+          <p class="taste__source"><span></span> <a></a></p>
+        </div>
+      </div>
     </div>`;
 
   const form = container.querySelector("form");
   const list = container.querySelector("ol");
+  const notes = container.querySelector(".taste__notes");
+  const lotProfile = notes.querySelector(".taste__lot-profile");
+  const reference = notes.querySelector(".taste__reference");
+  const descriptors = reference.querySelector(".taste__descriptors");
+  const sourceDetails = reference.querySelector(".taste__source span");
+  const sourceLink = reference.querySelector("a");
 
   form.addEventListener("input", (e) => {
     if (e.target.type !== "range") return;
     you[e.target.name] = +e.target.value;
     container.querySelector(`#out-${e.target.name}`).textContent = (+e.target.value).toFixed(2);
-    selectedId = null;
     update();
   });
   form.querySelector(".taste__reset").addEventListener("click", () => {
@@ -48,7 +78,6 @@ export function createTastePrint(container, lots) {
       form.elements[k].value = medians[k];
       container.querySelector(`#out-${k}`).textContent = medians[k].toFixed(2);
     });
-    selectedId = null;
     update();
   });
 
@@ -84,28 +113,46 @@ export function createTastePrint(container, lots) {
       .map((d) => ({ d, dist: Math.hypot(...AXES.map((k) => d[k] - you[k])) }))
       .sort((p, q) => p.dist - q.dist)
       .slice(0, TOP_N);
-    if (selectedId == null) selectedId = ranked[0].d.id;
-    const match = lots.find((d) => d.id === selectedId);
-
     youPath.transition().duration(dur(250)).attr("d", line(AXES.map((k) => you[k])));
-    matchPath.transition().duration(dur(250)).attr("d", line(AXES.map((k) => match[k])));
-    svg.attr("aria-label", `Your taste-print compared with a ${match.countryLabel} ${match.variety}`);
 
     list.innerHTML = ranked
       .map(({ d, dist }) => `
-        <li><button type="button" data-id="${d.id}" aria-pressed="${d.id === selectedId}">
+        <li><button type="button" data-id="${d.id}" aria-pressed="false" aria-controls="taste-notes">
           <span class="m-name">${d.countryLabel}${d.region ? `, ${d.region}` : ""}</span>
           <span class="m-score">${d.total.toFixed(2)}</span>
           <span class="m-meta">${d.variety}, ${d.process.toLowerCase()}. Distance ${dist.toFixed(2)}</span>
         </button></li>`)
       .join("");
+    selectLot(list.querySelector("button"), ranked[0].d);
+  }
+
+  function selectLot(button, lot) {
+    list.querySelector('button[aria-pressed="true"]')?.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-pressed", "true");
+    button.after(notes);
+
+    matchPath.transition().duration(dur(250)).attr("d", line(AXES.map((k) => lot[k])));
+    svg.attr("aria-label", `Your taste-print compared with a ${lot.countryLabel} ${lot.variety}`);
+
+    const highScore = Math.max(...AXES.map((k) => lot[k]));
+    const highestRated = AXES.filter((k) => lot[k] === highScore).map((k) => LABELS[k].toLowerCase());
+    lotProfile.textContent = `This lot scored highest for ${listFormat.format(highestRated)} (${highScore.toFixed(2)}/10).`;
+
+    const example = ROASTER_REFERENCES[lot.countryLabel] ?? profilesByOrigin.get(lot.countryLabel);
+    reference.hidden = !example?.tastingNotes.length;
+    if (reference.hidden) return;
+
+    descriptors.textContent = example.tastingNotes.join(" · ");
+    const location = [example.region, lot.countryLabel].filter(Boolean).join(", ");
+    sourceDetails.textContent = [`“${example.example}”`, location, example.roaster].filter(Boolean).join(" · ") + " ·";
+    sourceLink.textContent = example.releaseId ? `Firstbloom #${example.releaseId}` : example.source;
+    sourceLink.href = example.url ?? FIRSTBLOOM;
   }
 
   list.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-id]");
-    if (!btn) return;
-    selectedId = +btn.dataset.id;
-    update();
+    if (!btn || btn.getAttribute("aria-pressed") === "true") return;
+    selectLot(btn, lots.find((lot) => lot.id === Number(btn.dataset.id)));
   });
 
   update();
