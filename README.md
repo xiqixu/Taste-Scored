@@ -1,5 +1,6 @@
 # Taste, scored.
-https://xiqixu.github.io/Taste-Scored/
+The live link: https://xiqixu.github.io/Taste-Scored/
+
 Run `python3 -m http.server 8000` from this folder and open
 [Act 3 in the local preview](http://localhost:8000/#act3-production).
 The data and basemap are local. The page loads D3 and fonts from their CDNs.
