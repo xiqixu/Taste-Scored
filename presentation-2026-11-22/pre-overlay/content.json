@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "title": "Taste, scored — Presentation mode",
+    "course": "SM6351 Information Visualization",
+    "presentationDate": "2026-11-23",
+    "durationSeconds": 600,
+    "qaSeconds": 180,
+    "language": "en",
+    "sourceCommit": "826b13eb0c19e413987d040b2f5f3c6cd069a8c4",
+    "originalSite": "https://xiqixu.github.io/Taste-Scored/",
+    "repository": "https://github.com/xiqixu/Taste-Scored",
+    "visualReference": "https://pear.no/",
+    "mode": "An optional narration overlay on the original webpage and its existing live visualizations.",
+    "note": "Ten guided stops follow the original five acts and credits. They are not ten pages or a replacement website."
+  },
+  "nodes": [
+    {
+      "id": "wheel",
+      "section": "Flavor hierarchy",
+      "title": "Reading the flavor hierarchy",
+      "summary": "We organise BeanMap’s flavor vocabulary into a parent–child JSON tree. D3 turns it into a sunburst, introducing the language of taste before the story moves to numerical scores.",
+      "seconds": 70,
+      "bullets": [
+        "Nested families, groups and notes organise the vocabulary; each terminal term receives equal weight.",
+        "D3 hierarchy, partition and SVG arcs translate the tree into concentric rings.",
+        "Color and progressive disclosure reveal relationships. Sector size represents vocabulary structure, not flavor frequency."
+      ],
+      "sources": [
+        {
+          "label": "BeanMap vocabulary source",
+          "url": "https://github.com/DouglasC2627/bean-map"
+        }
+      ],
+      "speakerNotes": "Our project, Taste, scored, helps newcomers connect the language of coffee with numerical evidence and the context behind a cup. We begin with words, move through scores and geography, and return to the fruit and personal exploration.\n\nThe first visualization is a sunburst. We organise BeanMap’s flavor vocabulary, adapted from the SCA and World Coffee Research structure, into a parent–child JSON tree. Each terminal term receives equal weight. D3 hierarchy and partition calculate the nested layout, and SVG arcs draw the rings.\n\nReading outward moves from a family such as fruity toward more specific notes. Family colors and progressive disclosure keep the relationships visible without showing every detail immediately. Clicking a branch in the exploration state offers a closer view. Sector size reflects vocabulary structure, not how often a flavor occurs in the tested coffees."
+    },
+    {
+      "id": "scores",
+      "section": "Score distributions",
+      "title": "Seeing the score distribution",
+      "summary": "The story moves from descriptive words to measured quality. Our prepared CQI dataset contains 207 Arabica lots, with sensory scores, origins and processing labels displayed through a D3 beeswarm.",
+      "seconds": 80,
+      "bullets": [
+        "Each dot represents one tested lot; horizontal position shows its recorded score.",
+        "Custom collision checks separate nearby dots vertically while preserving their exact horizontal values.",
+        "Taiwan contributes 61 lots, or 29.5%. All sweetness scores equal 10, shown with a shared-score annotation."
+      ],
+      "sources": [
+        {
+          "label": "Public CQI scrape",
+          "url": "https://github.com/fatih-boyar/coffee-quality-data-CQI"
+        },
+        {
+          "label": "Prepared lot records",
+          "url": "data/cqi-2023.json"
+        },
+        {
+          "label": "Sample summary",
+          "url": "data/summary.json"
+        }
+      ],
+      "speakerNotes": "We now move from descriptive vocabulary to judged quality. This view uses 207 prepared Arabica lot records from the Coffee Quality Institute, accessed through a public May 2023 scrape. The records retain numerical scores, origins, varieties and processing labels. The scrape date is not a common harvest year.\n\nA D3 beeswarm makes the distribution visible while keeping individual lots available for inspection. Each dot represents one tested batch, and its horizontal position comes directly from the recorded score. Custom collision checks choose vertical positions to separate nearby marks; vertical distance does not encode another measurement.\n\nSweetness is a special case: all 207 recorded values equal ten, so the chart marks their shared score and count. That does not mean all coffees taste equally sweet. These are quality scores, not direct intensity measurements.\n\nCoverage is also uneven. Taiwan contributes 61 lots, about 29.5 percent. This describes the tested sample, not global production."
+    },
+    {
+      "id": "production",
+      "section": "Production",
+      "title": "Placing production on the map",
+      "summary": "We expand from tested lots to national production. FAOSTAT records from 1961–2024 are linked to national reference locations and displayed as a D3 proportional-symbol map.",
+      "seconds": 65,
+      "bullets": [
+        "Keep annual green-coffee production in tonnes; exclude world and regional aggregates from map entries.",
+        "A fixed square-root radius scale makes circle area represent production consistently across years.",
+        "National reference points support geographic comparison. They are not farm coordinates or CQI sample locations."
+      ],
+      "sources": [
+        {
+          "label": "FAOSTAT QCL",
+          "url": "https://www.fao.org/faostat/en/#data/QCL"
+        },
+        {
+          "label": "OWID comparison",
+          "url": "https://ourworldindata.org/grapher/coffee-bean-production"
+        },
+        {
+          "label": "Published production table",
+          "url": "data/coffee-production.csv"
+        }
+      ],
+      "speakerNotes": "The story now changes scale, from tested batches to national production. This is a different dataset. We use FAOSTAT records from 1961 to 2024, keeping annual green-coffee production in tonnes and excluding world and regional aggregates from the mapped entries.\n\nD3 projects national reference locations onto a Natural Earth map. Circle area represents production: a square-root radius scale ensures that area carries the quantity, and the scale stays fixed across years. Changing the year therefore supports a meaningful comparison.\n\nThese positions locate countries or territories, not individual farms. The map answers where coffee is produced and at what scale. Any sourced coffee examples shown alongside a country remain separate from its annual production statistics; they do not define the flavor of an entire country."
+    },
+    {
+      "id": "trade",
+      "section": "Trade",
+      "title": "Following the trade",
+      "summary": "Production leads to movement. We combine two unroasted-coffee product codes from CEPII BACI into exporter–importer–year records, then use directed links to show trading relationships.",
+      "seconds": 65,
+      "bullets": [
+        "D3 projects partner locations; arrows indicate direction and line width indicates tonnes.",
+        "Up to eight largest routes within the selected year and filter keep the map readable.",
+        "Curves connect trading partners, not actual shipping routes; imports do not necessarily equal consumption."
+      ],
+      "sources": [
+        {
+          "label": "CEPII BACI",
+          "url": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37"
+        },
+        {
+          "label": "Published trade records",
+          "url": "data/coffee-trade.json"
+        }
+      ],
+      "speakerNotes": "After production, we ask where the beans go. This map uses CEPII BACI records from 1995 to 2024. Preparation combines two unroasted-coffee product codes into exporter, importer and year records. Absent or zero quantities and specified unmapped reporting groups are omitted.\n\nD3 projects the partner locations, and directed SVG curves connect them. Arrows indicate the exporter-to-importer direction; line width indicates reported tonnes. Selecting a route reveals its quantity.\n\nShowing every connection would obscure the pattern, so the interface displays up to eight of the largest routes within the selected year and filter. This is a readable selection, not the complete network. The curves are trading relationships rather than reconstructed shipping paths. Re-exports can appear in several relationships, so imports are not equivalent to final consumption."
+    },
+    {
+      "id": "altitude",
+      "section": "Altitude",
+      "title": "Testing the altitude question",
+      "summary": "Returning to individual coffees, we ask whether higher altitude accompanies higher scores. A D3 scatterplot compares 202 lots with altitude data, excluding five records with missing values.",
+      "seconds": 60,
+      "bullets": [
+        "Horizontal position shows altitude; vertical position shows total cup score.",
+        "JavaScript calculates a least-squares trend line and Pearson’s correlation.",
+        "The correlation is weak, at approximately 0.18. This association does not establish causation."
+      ],
+      "sources": [
+        {
+          "label": "Public CQI scrape",
+          "url": "https://github.com/fatih-boyar/coffee-quality-data-CQI"
+        },
+        {
+          "label": "Prepared lot records",
+          "url": "data/cqi-2023.json"
+        },
+        {
+          "label": "Sample summary",
+          "url": "data/summary.json"
+        }
+      ],
+      "speakerNotes": "The page returns from global context to individual coffees with a specific question: do higher-altitude lots receive higher scores? Five records have no altitude, so this comparison uses the 202 valid lots rather than treating missing values as zero.\n\nA D3 scatterplot places altitude on the horizontal axis and total cup score on the vertical axis. This lets us inspect the relationship between two numerical variables without grouping away the individual records. JavaScript calculates a least-squares trend line and Pearson’s correlation.\n\nThe correlation is approximately 0.18, a weak positive association in this sample. Altitude alone does not explain the scores, and the plot cannot establish that altitude causes quality. Origin, variety, processing and sample selection also matter."
+    },
+    {
+      "id": "cherry",
+      "section": "Coffee cherry",
+      "title": "From a point to a fruit",
+      "summary": "The highest-scoring lot becomes a visual bridge from data to a coffee cherry. CSS artwork and browser animation connect an abstract plotted point with the fruit behind it.",
+      "seconds": 45,
+      "bullets": [
+        "The transition begins with the recorded Castillo lot scoring 89.33.",
+        "JavaScript carries the point’s screen position into a sequence using the Web Animations API.",
+        "The transformation connects two scales of the story; the fruit is illustrative, not a measurement."
+      ],
+      "sources": [
+        {
+          "label": "Recorded CQI lots",
+          "url": "data/cqi-2023.json"
+        },
+        {
+          "label": "Original story and credits",
+          "url": "https://xiqixu.github.io/Taste-Scored/"
+        }
+      ],
+      "speakerNotes": "The highest-scoring recorded lot, a Colombian Castillo at 89.33, becomes a bridge from the scatterplot to the coffee fruit. The animation carries the point’s screen position into a cherry, preserving visual continuity as the story changes scale.\n\nThe fruit uses CSS artwork, JavaScript and the browser’s Web Animations API. It is an explanatory illustration, not a photograph or another measurement of that particular lot.\n\nThis moment helps the audience connect an abstract data record with something physical: a coffee bean is a seed inside a fruit. That prepares the next comparison, which explains what happens to the surrounding layers during processing."
+    },
+    {
+      "id": "processing",
+      "section": "Processing",
+      "title": "Explaining processing",
+      "summary": "The split fruit introduces washed, natural and honey processing. A shared HTML/CSS cutaway and JavaScript controls reveal which layers remain around the seeds during drying.",
+      "seconds": 55,
+      "bullets": [
+        "Processing references become method labels, layer states and concise descriptions.",
+        "Consistent geometry and colors let readers compare methods without relearning the diagram.",
+        "The diagram explains processing labels encountered in the score data; it does not measure their effects on quality."
+      ],
+      "sources": [
+        {
+          "label": "Processing research",
+          "url": "https://doi.org/10.3390/agriengineering6030129"
+        },
+        {
+          "label": "UCDA reference",
+          "url": "https://nov.ugandacoffee.go.ug/index.php/node/75"
+        }
+      ],
+      "speakerNotes": "We can now give meaning to processing labels already encountered in the score data. Reference material is organised into three methods: washed, natural and honey. Each method supplies a short description and a set of visible fruit layers.\n\nA shared HTML and CSS cutaway keeps the geometry consistent. JavaScript controls switch the method and reveal which layers remain around the seeds during drying. Natural processing dries the whole cherry; washed processing removes the fruit and mucilage before drying; honey processing retains some mucilage.\n\nKeeping the form and colors consistent lets readers compare the change directly. This is a reference-based teaching diagram. It explains a process rather than estimating how many points a method adds to cup quality."
+    },
+    {
+      "id": "varieties",
+      "section": "Varieties",
+      "title": "Comparing varieties",
+      "summary": "Selected World Coffee Research and Cenicafé relationships connect variety history with the CQI sample. An SVG relationship diagram and D3 score plots bring biological context and measured outcomes together.",
+      "seconds": 65,
+      "bullets": [
+        "Links distinguish groups, mutations and hybrid parentage; this is a selected diagram, not a complete genetic tree.",
+        "Variety labels group tested lots onto a shared score axis, with vertical packing reducing overlap.",
+        "Bourbon has 17 lots, Caturra 27 and Castillo one. Unequal samples limit conclusions about varieties."
+      ],
+      "sources": [
+        {
+          "label": "World Coffee Research",
+          "url": "https://varieties.worldcoffeeresearch.org/"
+        },
+        {
+          "label": "Cenicafé: Castillo",
+          "url": "https://biblioteca.cenicafe.org/jspui/handle/10778/401"
+        },
+        {
+          "label": "CQI sample",
+          "url": "data/cqi-2023.json"
+        }
+      ],
+      "speakerNotes": "The variety view connects biological context with the tested coffees. Selected relationships from World Coffee Research and Cenicafé distinguish group membership, natural mutations and hybrid parentage. The SVG diagram is not a complete genetic tree, and link length does not measure genetic distance.\n\nChoosing two varieties brings their CQI records into D3 score plots on a shared axis. Fixed horizontal positions preserve the scores, while vertical packing reduces overlap. The audience can compare with their eyes instead of remembering separate views.\n\nThe counts constrain our interpretation. Bourbon has 17 lots, Caturra has 27, and Castillo has only one. A single high-scoring Castillo does not show that the variety is generally better. Origin and processing also differ, so the comparison supports exploration rather than a causal ranking."
+    },
+    {
+      "id": "taste",
+      "section": "Your cup",
+      "title": "Building your cup profile",
+      "summary": "The story ends with exploration. Six sliders shape a D3 radar chart, while JavaScript compares the chosen profile with recorded CQI scores to find nearby examples.",
+      "seconds": 60,
+      "bullets": [
+        "Six axes show aroma, flavor, aftertaste, acidity, body and balance together.",
+        "Equal-weight Euclidean distance identifies the five closest score profiles; this is similarity, not preference prediction.",
+        "Quality scores differ from sensory intensity. Linked flavor notes describe another coffee, not the matched CQI lot."
+      ],
+      "sources": [
+        {
+          "label": "CQI numerical records",
+          "url": "data/cqi-2023.json"
+        },
+        {
+          "label": "Firstbloom examples",
+          "url": "https://github.com/alexcaza/firstbloom-data"
+        }
+      ],
+      "speakerNotes": "The final act turns what the reader has learned into exploration. Six sliders set a profile for aroma, flavor, aftertaste, acidity, body and balance. A D3 radar chart places these attributes around a common shape and overlays a selected lot for comparison.\n\nJavaScript calculates equal-weight Euclidean distance across those six scores and returns the five closest records. This is similarity between quality-score profiles, not a validated prediction of personal liking. A higher acidity quality score does not necessarily mean a more intensely sour drink.\n\nThe linked written flavor notes are separately attributed examples from another coffee, not measurements of the matched CQI lot. The journey ends with a way to explore the evidence while keeping those distinctions visible."
+    },
+    {
+      "id": "team",
+      "section": "Workload",
+      "title": "Who did what",
+      "summary": "Two contributors connected the data, narrative and interface.",
+      "seconds": 35,
+      "bullets": [
+        "Website development, overall storyline, visual style and aesthetic direction.",
+        "Data collection and scraping, data cleaning and organisation, and additional Act 3 content.",
+        "GitHub Pages hosts the website; Three.js powers the presentation layer’s noise-dissolve transitions."
+      ],
+      "sources": [
+        {
+          "label": "Project source and credits",
+          "url": "https://github.com/xiqixu/Taste-Scored"
+        }
+      ],
+      "speakerNotes": "I am xiqixu. I developed the website, conceived its overall storyline and directed its visual style and aesthetics. Rongxi collected and scraped the data, cleaned and organised it, and expanded the Act three content.\n\nGitHub Pages hosts the static website. Three.js powers only the presentation layer’s noise-dissolve transitions; the original data views remain interactive on the same page.\n\nOur contributions connect the data, narrative and interface into one journey. Thank you. We welcome your questions."
+    }
+  ]
+}

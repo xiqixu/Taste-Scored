@@ -1,0 +1,72 @@
+TASTE, SCORED — THREE-MINUTE Q&A PREPARATION
+Use approximately 20–30 seconds per answer. These are backup answers, not extra material to read during the ten-minute presentation.
+
+FIRST PRIORITY
+
+1. Can the 207 coffees represent the global coffee market?
+No. They are tested Arabica lots in a public CQI snapshot, rather than a random sample of all coffee. Taiwan supplies 61 of the 207 records. We show that imbalance to explain the sample's coverage. Global production and trade come from separate national datasets with broader scope.
+
+2. Why are sweetness scores all ten? Does that mean every coffee tastes equally sweet?
+No. These are the recorded cupping scores, not a direct sweetness-intensity measurement. The field is constant in this sample, so it cannot separate the lots. We use the finding to show why checking distributions matters before choosing a variable for comparison.
+
+3. Are the flavor descriptions the actual tasting notes of the recommended lot?
+The public CQI records provide numerical scores. The additional descriptions belong to named coffees from the same origin label, with separate attribution. The interface says “Tasting notes from another coffee.” We use them as examples of flavor language, not as labels attached to the matched CQI batch.
+
+VISUAL ENCODING AND ANALYSIS
+
+4. Why use circles for production rather than coloring each country?
+Production is an absolute quantity. Proportional area makes the quantity explicit without making a large country's land area stand for coffee output. We keep one tonnage scale across years. A locator ring may help reveal a very small producer; that ring is a locating aid, not its production symbol.
+
+5. Why show only eight trade routes?
+The display selects up to eight of the largest routes within the active year and filter. Showing every route would obscure the main pattern. We state that selection so viewers do not confuse the visible subset with the entire trade network. The underlying published file contains many more relationships.
+
+6. Are the arrows shipping paths, and do imports measure consumption?
+No. They connect the reporting locations of exporters and importers. Re-exports may appear in more than one relationship, and imported coffee can be processed or exported again. The chart communicates reported trade direction and tonnage, not a reconstructed transport itinerary or final consumption.
+
+7. Why did an earlier analysis say 48.5%, while the presentation says 47.9%?
+The denominators differ. Brazil and Vietnam total 5,403,013 tonnes in 2024. Dividing by the 78 mapped entries, 11,133,143.04 tonnes, gives about 48.5%. The README specifies a separate FAOSTAT world total of 11,284,877.41 tonnes for the story's comparison, giving about 47.9%. We use that world total and say “nearly half.”
+
+8. Can you conclude that a particular variety or processing method produces better coffee?
+Not from these comparisons. Group sizes are unequal and origin, processing and other conditions also differ. Castillo has only one CQI lot. The charts reveal distributions in this sample; they are not controlled experiments and cannot isolate a causal effect of variety or processing.
+
+9. Does the altitude chart prove that high-altitude coffee is better?
+No. It shows a weak association among the 202 lots with reported altitude. We exclude missing altitude from this view instead of assigning zero. The relationship does not control for origin, variety, processing or selection into the dataset, so it cannot establish causation.
+
+10. What exactly does the final matching system optimise?
+It finds the five lots with the smallest equal-weight Euclidean distance from the user's six chosen quality scores. This is a transparent baseline for comparing numerical profiles. It is not a trained recommendation model, and we have not validated it as a predictor of personal liking.
+
+DESIGN AND IMPLEMENTATION
+
+11. How do the annotations and the dissolve help the story?
+The annotations connect a short explanation to the relevant visual mark, so the audience can find the evidence without searching the screen. The dissolve signals an explicit change of guided stop. Ordinary scrolling does not trigger the presentation transition. Neither decoration adds a new data variable. We keep the charts readable and provide a reduced-motion alternative.
+
+12. Why do you use a 2D interface if Three.js is part of the stack?
+The quantitative views remain two-dimensional because area, position and direction are easier to compare without perspective distortion or occlusion. Three.js serves the presentation transition. It does not imply that production or scores are encoded in a 3D scene.
+
+13. Did you use Blender?
+We have not verified a Blender-authored asset in the delivered project, so we do not list it as a confirmed production tool. The current repository documents the generated Arabica branch and its source separately. If a Blender asset is later identified, its actual role and provenance should be added to the credits.
+
+14. What did the two team members contribute?
+xiqixu built the website, developed the overall storyline and directed the visual style and aesthetics. rongxi collected, cleaned and organised the data and expanded Act 3. We do not invent percentage allocations. Data sources, third-party assets and AI assistance are credited separately from that division of work.
+
+15. What would you improve next?
+We would validate the story with novice coffee readers and test whether they can distinguish scores from intensity and examples from matched-lot evidence. We would improve reproducibility and sample coverage before making stronger claims. The latest source already fixes the earlier horizontal score-position ambiguity in the beeswarm.
+
+16. Why do all the sweetness marks appear at the same position?
+Every recorded sweetness value is ten, so the latest source puts the 207 marks at the same exact score coordinate and labels the overlap. The general score view preserves horizontal values and avoids nearby points vertically. An earlier version allowed horizontal collision shifts; that issue is corrected in commit 826b13e.
+
+17. Is this a separate presentation site?
+No. It is an optional explanation layer on the existing webpage. The charts remain the original interactive DOM elements. Pre mode temporarily reserves space beside the story so the narration does not cover it. Turning the layer off removes those layout overrides and restores the normal page; the chart source and data are unchanged.
+
+SOURCE POINTERS
+Project and preparation: ../../README.md
+CQI records: ../../data/cqi-2023.json
+Production: ../../data/coffee-production.csv
+Trade: ../../data/coffee-trade.json
+Origin references: ../../data/producer-profiles.json
+Original live story: https://xiqixu.github.io/Taste-Scored/
+
+RESPONSE HABIT
+First identify what a mark represents. Then state the supported finding. Finally give the relevant boundary. If asked about work or data that the repository does not document, say what is verified rather than guessing.
+
+

@@ -1,0 +1,85 @@
+.espresso-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  color: #f2e8d2;
+  font-family: var(--font-display);
+  pointer-events: none;
+}
+
+.espresso-intro__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.espresso-intro__shot {
+  position: absolute;
+  inset: 0;
+  transform: translateY(var(--camera-offset, 0px));
+}
+
+.espresso-intro__media {
+  position: absolute;
+  inset: 0;
+  opacity: var(--video-opacity, 1);
+  background: #201811;
+  mask-image: linear-gradient(#000 var(--frame-edge, 100%), transparent);
+}
+
+.espresso-intro__media::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 24%;
+  background: linear-gradient(transparent, #140c08bd);
+  pointer-events: none;
+}
+
+.espresso-intro__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.espresso-intro__flow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.espresso-intro__controls {
+  position: absolute;
+  inset-inline: var(--gutter);
+  inset-block-end: max(1.4rem, env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.espresso-intro__controls button {
+  padding: 0.6em 1em;
+  border: 1px solid #f2e8d288;
+  border-radius: 999px;
+  background: #201811b8;
+  color: inherit;
+  font: 600 var(--step--1) var(--font-display);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.espresso-intro__controls button:not(:focus-visible) { opacity: var(--video-opacity, 1); }
+.espresso-intro__controls button:hover { background: #201811; }
+.espresso-intro__controls button:focus-visible { outline-color: #f2e8d2; }
+
+.has-espresso-intro .hero {
+  translate: 0 var(--espresso-arrival, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .espresso-intro { display: none; }
+}

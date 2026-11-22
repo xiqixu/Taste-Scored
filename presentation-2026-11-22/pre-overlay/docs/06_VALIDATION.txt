@@ -1,0 +1,75 @@
+TASTE, SCORED — OPTIONAL PRE LAYER: VALIDATION
+Validated locally on 22 November 2026. No remote publication was performed.
+
+LATEST CONTENT REVISION — 22 NOVEMBER 2026
+The approved chart-by-chart copy replaces the earlier category-based narrative.
+The ten stops are wheel, scores, production, trade, altitude, cherry, processing,
+varieties, taste and team. Tools, datasets and design decisions are explained at
+the relevant chart. The new script contains approximately 1,189 spoken words;
+planned durations still total 600 seconds. The old script count below is historical.
+Only content, stop/anchor mappings, scroll-to-node mappings and documentation
+changed. Existing visual styles, layout, transitions, charts and data were preserved.
+Checked all ten stops and three focus cues at 1440x900 and 1280x720. The approved
+text, visible guides, non-overlapping panel and integrated navigation passed.
+Forward/reverse scrolling passed at twelve original story positions, including
+the new altitude and cherry stops. Hide/show, Next, default mode, exit restoration
+and narrow-screen Notes were checked without uncaught JavaScript errors.
+Viewport checks account for the browser scrollbar and subpixel layout rounding.
+
+LATEST UI REVISION — 22 NOVEMBER 2026
+Navigation is now inside the single glass narration card: chapter selection,
+Previous and Next only. The separate toolbar, time displays, fullscreen/exit
+buttons and painted rail background/divider were removed. Hide remains in the
+card header; Show/Notes appears only when needed. Escape or P exits Pre mode.
+Thirty desktop node/viewport combinations and eight interaction checks passed,
+including pinned footer visibility with long notes, scrolling synchronization,
+hide/show, mobile Notes and clean exit. No uncaught JavaScript errors occurred.
+The elapsed-timer item in the earlier checklist below records historical testing;
+the timer is no longer included in this revision.
+
+SOURCE AND SCOPE
+GitHub baseline: 826b13eb0c19e413987d040b2f5f3c6cd069a8c4.
+All original chart, CSS, data and asset files are unchanged. The only original
+file change is one module-script reference in index.html.
+Pre mode injects temporary layout rules to reserve narration space, then removes
+them on exit. It does not duplicate, replace or reinitialize the visualizations.
+
+LAYOUT AND APPEARANCE
+The latest design uses transparent light glass and dark text. There is no dark
+green panel background. The desktop panel and every presentation control occupy
+a separate reserved rail. The rail shrinks when the panel is collapsed.
+All ten stops were checked at 1920x1080, 1440x900 and 1280x720: no panel/control
+overlap with the original content area and no measured horizontal overflow of
+the relevant chart, text, legends or filter controls. All three guide cues per
+stop were checked. Two small-screen targets were corrected and rechecked.
+At 390x844 the notes use normal document flow above the original webpage; Notes
+and Focus switch between explanation and chart. No horizontal overflow occurred.
+
+BEHAVIOR
+- Default mode creates no presentation DOM and loads only the dormant loader.
+- Baseline/default screenshots at the wheel have zero pixel differences.
+- After exiting, the same URL/scroll position returns; the screenshot again has
+  zero pixel differences from the pre-entry normal view.
+- The original wheel SVG remains the same DOM instance throughout the walkthrough.
+- The original wheel can be clicked in its explore state; a click selected Fruity.
+- The original trade-year slider continues to work while narration is collapsed.
+- Collapse hides the guide; free scrolling does not run the dissolve.
+- Explicit node navigation runs the noise transition; reduced-motion mode skips it.
+- A simulated unavailable WebGL context uses the CSS fallback and keeps navigation
+  working. Exit during a transition removes the UI and leaves scroll stable.
+- Re-entry, elapsed timer, all ten node selections and mobile Notes/Focus were checked.
+- Exit removes the layout marker, temporary stylesheet, tooltip observer and overlay.
+- No uncaught JavaScript errors occurred in these interaction checks.
+
+The original favicon request can return 404; this is inherited from the baseline.
+The original external D3/font dependencies still require their usual network access.
+The vendored Three.js module and its license are included in the overlay folder.
+
+CONTENT
+Ten planned timings total 600 seconds. The English script contains approximately
+1,119 spoken words, leaving room for interactions at a normal presentation pace.
+Data analysis, implemented visualizations, storyline, tools and workload are covered.
+Three.js is attributed to the optional overlay. Blender use remains unverified.
+
+These are local Chromium checks, not a claim of completed testing on every browser
+or classroom projector. Use START-PRE-MODE.cmd for the final classroom rehearsal.

@@ -1,0 +1,41 @@
+{
+ "lots": 207,
+ "countries": 22,
+ "medianTotal": 83.75,
+ "minTotal": 78.0,
+ "maxTotal": 89.33,
+ "below80": 3,
+ "altitudeKnown": 202,
+ "taiwanShare": 0.295,
+ "countryCounts": {
+  "Taiwan": 61,
+  "Guatemala": 21,
+  "Colombia": 19,
+  "Honduras": 13,
+  "Thailand": 12,
+  "Ethiopia": 11,
+  "Brazil": 10,
+  "Costa Rica": 8,
+  "Nicaragua": 7,
+  "El Salvador": 7,
+  "Tanzania": 6,
+  "Hawaii (USA)": 5,
+  "Peru": 4,
+  "Vietnam": 4,
+  "Mexico": 4,
+  "Laos": 3,
+  "Uganda": 3,
+  "Indonesia": 3,
+  "Kenya": 2,
+  "Panama": 2,
+  "Madagascar": 1,
+  "Myanmar": 1
+ },
+ "processCounts": {
+  "Experimental": 3,
+  "Washed": 127,
+  "Honey / pulped natural": 26,
+  "Natural": 46,
+  "Not recorded": 5
+ }
+}

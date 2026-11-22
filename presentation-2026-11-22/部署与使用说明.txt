@@ -1,0 +1,66 @@
+Taste, scored — 原网页 Presentation / Pre 叠加层
+2026-11-22 | 基于 GitHub 826b13eb0c19e413987d040b2f5f3c6cd069a8c4
+
+本次版本修正
+英文内容已按用户确认稿更新：风味旭日图、评分蜂群图、产量地图、贸易流向、海拔散点图、咖啡果动画、加工方式、品种比较、杯测画像、最后分工。
+每张图就地说明数据、工具、设计与故事作用，不再单独设“工具”章节。保留现有毛玻璃样式、框内导航与滚动同步。
+只有原网站同一个 index.html，没有新建独立 presentation 页面。
+原图表、样式、数据和滚动脚本保持原文件。index.html 仅增加一个 pre-overlay/loader.js 模块引用。演示开启时会注入可撤销的布局样式，为讲解栏临时留出空间；退出后移除，恢复原网页布局。
+旧五页独立演示包不应再用于本次任务；请用本次 Pre-Overlay 文件包。
+
+最新视觉与布局要求
+浅透明毛玻璃、深色文字；不使用深绿色旁白框。旁白不能盖住原网页文字、图表或控件，因此在 Pre 模式临时为它预留区域。普通模式不留这个区域。
+旁白框底部内置章节下拉框与 Previous / Next，不再使用独立控制卡片或计时器；框后的整条背景层和分割线已移除。
+
+本地预览
+解压完整包，双击 START-PRE-MODE.cmd：打开同一个原网站并开启叠加层。
+双击 START-NORMAL-MODE.cmd：打开原网站正常浏览，默认没有演示组件。
+启动器使用电脑上已有的 Node.js。也可以使用 VS Code Live Server。
+不要直接双击 index.html，原网站的数据加载本身需要 HTTP 服务。
+
+开启、隐藏和退出
+P：从原网页开启 Pre 模式；再次按 P 退出。
+H 或旁白框 Hide：收起旁白，引线一起消失；右上角小按钮 Show 可重新展开。
+Previous / Next 或左右方向键：切换讲解节点，并触发一次噪点溶解。
+下拉菜单：直接选一个讲解节点。
+Return to focus：自由滚动浏览之后回到当前讲解位置，不播放节点切换转场。
+旁白使用独立预留区域，与原网页内容分开显示；不提供自由拖动和 Auto place。收起时只保留一个 Show 小按钮。
+课堂建议使用至少1280像素宽的桌面窗口。窄屏中，旁白放在页面上方的正常文档流，Notes 回到说明，框内 Return to focus 回到图表，两者不会互相覆盖。
+Esc 或 P：退出，删除叠加组件并恢复进入时的浏览位置和地址。
+输入框、下拉框及滑块获得焦点时，方向键继续服务原控件。
+演示过程中仍可自由滚动、悬停、筛选、缩放和操作原图表。普通滚动不会触发噪点溶解。
+
+原 GitHub Pages 地址
+正常模式：https://xiqixu.github.io/Taste-Scored/
+演示模式：https://xiqixu.github.io/Taste-Scored/?pre=1#act-wheel
+两个地址使用同一个 index.html。上述演示链接要在你上传本次更改后才会生效，本次未替你发布。
+默认隐藏入口是为了满足“正常页面不显示任何演示控件”的要求。
+
+上传原仓库（推荐最小改动包）
+1. 先备份原仓库。
+2. 将最小改动包内的 pre-overlay 文件夹上传到原仓库根目录。
+3. 若远程 index.html 仍是本次基底，可上传包内 index.html。
+   若你已经继续修改首页，请保留你的最新版，只在原首页最后加入这一行：
+   <script type="module" src="pre-overlay/loader.js"></script>
+4. 保持原 GitHub Pages 设置，等待原网站自动重新发布。
+5. 用无痕窗口检查默认地址与 ?pre=1#act-wheel 地址。
+不要使用旧版 /presentation/ 地址，也不需要创建新仓库或新页面。
+
+文件说明
+pre-overlay/loader.js：默认休眠入口，只监听 P 或显式查询参数。
+pre-overlay/controller.js：叠加层、节点定位、滚动同步、隐藏/退出与恢复逻辑。
+pre-overlay/styles.css：Shadow DOM 内的浅透明毛玻璃旁白和控件样式。
+pre-overlay/layout.js：只在 Pre 模式临时预留侧栏、适配原内容宽度；退出时删除临时样式，不改写原 CSS 文件。
+pre-overlay/anchors.js：跟随原 DOM / SVG 元素的指引线。
+pre-overlay/transition.js：只在演示节点切换时运行的 Three.js 噪点遮罩。
+pre-overlay/content.json：10个英文讲解节点，建议时间总600秒。
+pre-overlay/docs/：更新后的英文讲稿、Q&A、课堂要求对照与使用说明。
+
+讲解与资料
+10个节点沿原网页顺序串联，仍覆盖数据、可视化、故事线、工具和真实分工。
+xiqixu：网页搭建、整体故事线、视觉风格与审美把控。
+rongxi：数据爬取、清洗整理、Act 3 内容补充。
+Three.js 是本叠加层使用的工具；Blender 用途未确认，未写为已使用。
+原网页依旧使用它原来的外部字体/CDN来源，正常展示请保持网络可用。
+叠加层的 Three.js 自带本地副本；减少动态效果或无WebGL时会采用轻量切换。
+

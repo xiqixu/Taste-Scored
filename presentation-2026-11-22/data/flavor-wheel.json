@@ -1,0 +1,630 @@
+{
+ "name": "Coffee flavor",
+ "children": [
+  {
+   "id": "floral",
+   "name": "Floral",
+   "color": "#E27396",
+   "children": [
+    {
+     "id": "black-tea",
+     "name": "Black Tea",
+     "value": 1
+    },
+    {
+     "id": "floral-aromatic",
+     "name": "Floral",
+     "children": [
+      {
+       "id": "jasmine",
+       "name": "Jasmine",
+       "value": 1
+      },
+      {
+       "id": "honeysuckle",
+       "name": "Honeysuckle",
+       "value": 1
+      },
+      {
+       "id": "rose",
+       "name": "Rose",
+       "value": 1
+      },
+      {
+       "id": "chamomile",
+       "name": "Chamomile",
+       "value": 1
+      },
+      {
+       "id": "floral",
+       "name": "Floral",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fruity",
+   "name": "Fruity",
+   "color": "#C1440E",
+   "children": [
+    {
+     "id": "berry",
+     "name": "Berry",
+     "children": [
+      {
+       "id": "blackberry",
+       "name": "Blackberry",
+       "value": 1
+      },
+      {
+       "id": "raspberry",
+       "name": "Raspberry",
+       "value": 1
+      },
+      {
+       "id": "blueberry",
+       "name": "Blueberry",
+       "value": 1
+      },
+      {
+       "id": "strawberry",
+       "name": "Strawberry",
+       "value": 1
+      },
+      {
+       "id": "blackcurrant",
+       "name": "Blackcurrant",
+       "value": 1
+      },
+      {
+       "id": "red-fruit",
+       "name": "Red Fruit",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "dried-fruit",
+     "name": "Dried Fruit",
+     "children": [
+      {
+       "id": "raisin",
+       "name": "Raisin",
+       "value": 1
+      },
+      {
+       "id": "prune",
+       "name": "Prune",
+       "value": 1
+      },
+      {
+       "id": "date",
+       "name": "Date",
+       "value": 1
+      },
+      {
+       "id": "dried-apricot",
+       "name": "Dried Apricot",
+       "value": 1
+      },
+      {
+       "id": "fig",
+       "name": "Fig",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "other-fruit",
+     "name": "Other Fruit",
+     "children": [
+      {
+       "id": "apple",
+       "name": "Apple",
+       "value": 1
+      },
+      {
+       "id": "red-apple",
+       "name": "Red Apple",
+       "value": 1
+      },
+      {
+       "id": "peach",
+       "name": "Peach",
+       "value": 1
+      },
+      {
+       "id": "pear",
+       "name": "Pear",
+       "value": 1
+      },
+      {
+       "id": "apricot",
+       "name": "Apricot",
+       "value": 1
+      },
+      {
+       "id": "plum",
+       "name": "Plum",
+       "value": 1
+      },
+      {
+       "id": "stone-fruit",
+       "name": "Stone Fruit",
+       "value": 1
+      },
+      {
+       "id": "tropical-fruit",
+       "name": "Tropical Fruit",
+       "value": 1
+      },
+      {
+       "id": "pineapple",
+       "name": "Pineapple",
+       "value": 1
+      },
+      {
+       "id": "mango",
+       "name": "Mango",
+       "value": 1
+      },
+      {
+       "id": "red-grape",
+       "name": "Red Grape",
+       "value": 1
+      },
+      {
+       "id": "tomato",
+       "name": "Tomato",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "citrus",
+     "name": "Citrus",
+     "children": [
+      {
+       "id": "lemon",
+       "name": "Lemon",
+       "value": 1
+      },
+      {
+       "id": "lime",
+       "name": "Lime",
+       "value": 1
+      },
+      {
+       "id": "orange",
+       "name": "Orange",
+       "value": 1
+      },
+      {
+       "id": "tangerine",
+       "name": "Tangerine",
+       "value": 1
+      },
+      {
+       "id": "grapefruit",
+       "name": "Grapefruit",
+       "value": 1
+      },
+      {
+       "id": "pink-grapefruit",
+       "name": "Pink Grapefruit",
+       "value": 1
+      },
+      {
+       "id": "bergamot",
+       "name": "Bergamot",
+       "value": 1
+      },
+      {
+       "id": "citrus-zest",
+       "name": "Citrus Zest",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sour-fermented",
+   "name": "Sour / Fermented",
+   "color": "#E8B14E",
+   "children": [
+    {
+     "id": "sour",
+     "name": "Sour Aromatics",
+     "value": 1
+    },
+    {
+     "id": "alcohol-fermented",
+     "name": "Alcohol / Fermented",
+     "children": [
+      {
+       "id": "winey",
+       "name": "Winey",
+       "value": 1
+      },
+      {
+       "id": "red-wine",
+       "name": "Red Wine",
+       "value": 1
+      },
+      {
+       "id": "whiskey",
+       "name": "Whiskey",
+       "value": 1
+      },
+      {
+       "id": "fermented",
+       "name": "Fermented",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "green-vegetative",
+   "name": "Green / Vegetative",
+   "color": "#4A7C59",
+   "children": [
+    {
+     "id": "olive-oil",
+     "name": "Olive Oil",
+     "value": 1
+    },
+    {
+     "id": "raw",
+     "name": "Raw",
+     "value": 1
+    },
+    {
+     "id": "green-vegetal",
+     "name": "Green / Vegetal",
+     "children": [
+      {
+       "id": "herbal",
+       "name": "Herbal",
+       "value": 1
+      },
+      {
+       "id": "grassy",
+       "name": "Grassy",
+       "value": 1
+      },
+      {
+       "id": "vegetal",
+       "name": "Vegetal",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "beany",
+     "name": "Beany",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "id": "roasted",
+   "name": "Roasted",
+   "color": "#6F4E37",
+   "children": [
+    {
+     "id": "tobacco-pipe",
+     "name": "Pipe Tobacco",
+     "value": 1
+    },
+    {
+     "id": "tobacco",
+     "name": "Tobacco",
+     "value": 1
+    },
+    {
+     "id": "burnt",
+     "name": "Burnt",
+     "children": [
+      {
+       "id": "smoky",
+       "name": "Smoky",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "cereal",
+     "name": "Cereal",
+     "children": [
+      {
+       "id": "malt",
+       "name": "Malt",
+       "value": 1
+      },
+      {
+       "id": "grain",
+       "name": "Grain",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "earthy-mineral",
+     "name": "Earthy / Mineral",
+     "children": [
+      {
+       "id": "earthy",
+       "name": "Earthy",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "spices",
+   "name": "Spices",
+   "color": "#A8443A",
+   "children": [
+    {
+     "id": "pungent",
+     "name": "Pungent",
+     "value": 1
+    },
+    {
+     "id": "pepper",
+     "name": "Pepper",
+     "value": 1
+    },
+    {
+     "id": "brown-spice",
+     "name": "Brown Spice",
+     "children": [
+      {
+       "id": "cinnamon",
+       "name": "Cinnamon",
+       "value": 1
+      },
+      {
+       "id": "clove",
+       "name": "Clove",
+       "value": 1
+      },
+      {
+       "id": "cardamom",
+       "name": "Cardamom",
+       "value": 1
+      },
+      {
+       "id": "nutmeg",
+       "name": "Nutmeg",
+       "value": 1
+      },
+      {
+       "id": "anise",
+       "name": "Anise",
+       "value": 1
+      },
+      {
+       "id": "brown-spice",
+       "name": "Brown Spice",
+       "value": 1
+      },
+      {
+       "id": "spice",
+       "name": "Spice",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "woody",
+     "name": "Woody",
+     "children": [
+      {
+       "id": "cedar",
+       "name": "Cedar",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nutty-cocoa",
+   "name": "Nutty / Cocoa",
+   "color": "#8B6F47",
+   "children": [
+    {
+     "id": "nutty",
+     "name": "Nutty",
+     "children": [
+      {
+       "id": "almond",
+       "name": "Almond",
+       "value": 1
+      },
+      {
+       "id": "roasted-almond",
+       "name": "Roasted Almond",
+       "value": 1
+      },
+      {
+       "id": "hazelnut",
+       "name": "Hazelnut",
+       "value": 1
+      },
+      {
+       "id": "peanut",
+       "name": "Peanut",
+       "value": 1
+      },
+      {
+       "id": "cashew",
+       "name": "Cashew",
+       "value": 1
+      },
+      {
+       "id": "walnut",
+       "name": "Walnut",
+       "value": 1
+      },
+      {
+       "id": "macadamia",
+       "name": "Macadamia",
+       "value": 1
+      },
+      {
+       "id": "pecan",
+       "name": "Pecan",
+       "value": 1
+      },
+      {
+       "id": "nut",
+       "name": "Nut",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "cocoa",
+     "name": "Cocoa",
+     "children": [
+      {
+       "id": "cocoa",
+       "name": "Cocoa",
+       "value": 1
+      },
+      {
+       "id": "cocoa-nib",
+       "name": "Cocoa Nib",
+       "value": 1
+      },
+      {
+       "id": "chocolate",
+       "name": "Chocolate",
+       "value": 1
+      },
+      {
+       "id": "milk-chocolate",
+       "name": "Milk Chocolate",
+       "value": 1
+      },
+      {
+       "id": "dark-chocolate",
+       "name": "Dark Chocolate",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sweet",
+   "name": "Sweet",
+   "color": "#D4A574",
+   "children": [
+    {
+     "id": "brown-sugar",
+     "name": "Brown Sugar",
+     "children": [
+      {
+       "id": "brown-sugar",
+       "name": "Brown Sugar",
+       "value": 1
+      },
+      {
+       "id": "cane-sugar",
+       "name": "Cane Sugar",
+       "value": 1
+      },
+      {
+       "id": "panela",
+       "name": "Panela",
+       "value": 1
+      },
+      {
+       "id": "molasses",
+       "name": "Molasses",
+       "value": 1
+      },
+      {
+       "id": "maple",
+       "name": "Maple",
+       "value": 1
+      },
+      {
+       "id": "honey",
+       "name": "Honey",
+       "value": 1
+      },
+      {
+       "id": "caramel",
+       "name": "Caramel",
+       "value": 1
+      },
+      {
+       "id": "toffee",
+       "name": "Toffee",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "vanilla",
+     "name": "Vanilla",
+     "value": 1
+    },
+    {
+     "id": "overall-sweet",
+     "name": "Overall Sweet",
+     "value": 1
+    },
+    {
+     "id": "sweet-aromatics",
+     "name": "Sweet Aromatics",
+     "children": [
+      {
+       "id": "butter",
+       "name": "Butter",
+       "value": 1
+      },
+      {
+       "id": "cream",
+       "name": "Cream",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "other",
+   "name": "Other",
+   "color": "#7B7B7B",
+   "children": [
+    {
+     "id": "musty",
+     "name": "Papery / Musty",
+     "children": [
+      {
+       "id": "musty",
+       "name": "Musty",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": "chemical",
+     "name": "Chemical",
+     "value": 1
+    }
+   ]
+  }
+ ]
+}

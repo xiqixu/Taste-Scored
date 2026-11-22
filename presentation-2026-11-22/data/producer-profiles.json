@@ -1,0 +1,597 @@
+{
+  "BDI": {
+    "region": "Kayanza",
+    "varieties": [
+      "Bourbon"
+    ],
+    "tastingNotes": [
+      "Peach",
+      "Black tea",
+      "Tropical fruit"
+    ],
+    "example": "Jean-Clément Birabereye",
+    "roaster": "Saint-Henri Micro Torrefacteur",
+    "releaseId": "176",
+    "source": "Firstbloom"
+  },
+  "BOL": {
+    "region": "Yanacachi",
+    "varieties": [
+      "Gesha"
+    ],
+    "tastingNotes": [
+      "Apricot",
+      "Honey",
+      "Bergamot",
+      "Jasmine / Honeysuckle"
+    ],
+    "example": "Takesi",
+    "roaster": "The Coffee Collective",
+    "releaseId": "894",
+    "source": "Firstbloom"
+  },
+  "BRA": {
+    "region": "Valle de Grama",
+    "varieties": [
+      "Yellow Bourbon"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Citrus",
+      "Honey"
+    ],
+    "example": "Canario Microlot",
+    "roaster": "Kittel Atelier De Cafe",
+    "releaseId": "130",
+    "source": "Firstbloom"
+  },
+  "CHN": {
+    "region": "Yunnan",
+    "varieties": [
+      "Catimor"
+    ],
+    "tastingNotes": [
+      "Black tea",
+      "Chocolate",
+      "Nutmeg"
+    ],
+    "example": "Fuyan, China",
+    "roaster": "Irving Farm New York",
+    "releaseId": "663",
+    "source": "Firstbloom"
+  },
+  "CMR": {
+    "region": "Nord-Ouest",
+    "varieties": [
+      "Blue Mountain"
+    ],
+    "tastingNotes": [
+      "Almond",
+      "Sweet & Sugary",
+      "Chocolate",
+      "Apricot",
+      "Dried fruit"
+    ],
+    "example": "Kamerun Mbessa",
+    "roaster": "Kahawa",
+    "releaseId": "2757",
+    "source": "Firstbloom"
+  },
+  "COD": {
+    "region": "South Kivu",
+    "varieties": [
+      "Bourbon"
+    ],
+    "tastingNotes": [
+      "Milk chocolate",
+      "Fruit",
+      "Black currant"
+    ],
+    "example": "Congo Muungano Co-Op Decaf",
+    "roaster": "Seth Taylor: Coffee By Design",
+    "releaseId": "656",
+    "source": "Firstbloom"
+  },
+  "COG": {
+    "region": "Lake Kivu",
+    "varieties": [
+      "Bourbon"
+    ],
+    "tastingNotes": [
+      "Milk chocolate",
+      "Cream"
+    ],
+    "example": "Congo Bord du Lac",
+    "roaster": "Everyday Gourmet Coffee Roasters",
+    "releaseId": "705",
+    "source": "Firstbloom"
+  },
+  "COL": {
+    "region": "Nariño",
+    "varieties": [
+      "Catuai",
+      "Castillo",
+      "Colombia"
+    ],
+    "tastingNotes": [
+      "Raspberry",
+      "Almond",
+      "Milk chocolate"
+    ],
+    "example": "Colombia Cusillo",
+    "roaster": "Sam James Coffee Bar",
+    "releaseId": "82",
+    "source": "Firstbloom"
+  },
+  "CRI": {
+    "region": "Palmichal Mill",
+    "varieties": [
+      "Caturra",
+      "Catuai"
+    ],
+    "tastingNotes": [
+      "Caramel",
+      "Chocolate",
+      "Black cherry"
+    ],
+    "example": "Espresso Holycow",
+    "roaster": "Saint-Henri Micro Torrefacteur",
+    "releaseId": "5",
+    "source": "Firstbloom"
+  },
+  "CUB": {
+    "region": "Guamá",
+    "varieties": [
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Caramel",
+      "Cocoa powder",
+      "Tobacco",
+      "Dried fruit"
+    ],
+    "example": "Kuba Turquino Lavado",
+    "roaster": "CRS Coffee Roasters",
+    "releaseId": "2977",
+    "source": "Firstbloom"
+  },
+  "ECU": {
+    "region": "Pichincha",
+    "varieties": [
+      "Sidra"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Pineapple",
+      "Peach",
+      "Caramel"
+    ],
+    "example": "Ecuador Sidra",
+    "roaster": "Pop Coffee Works",
+    "releaseId": "525",
+    "source": "Firstbloom"
+  },
+  "ETH": {
+    "region": "Yirgacheffe",
+    "varieties": [
+      "Regional Landraces/Heirloom"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Lemon & Lemonade",
+      "Grain & Cereal"
+    ],
+    "example": "Ethiopia Eshete Station",
+    "roaster": "Sam James Coffee Bar",
+    "releaseId": "81",
+    "source": "Firstbloom"
+  },
+  "GTM": {
+    "region": "Sacatepéquez",
+    "varieties": [
+      "Bourbon",
+      "Caturra"
+    ],
+    "tastingNotes": [
+      "Spice",
+      "Raisin",
+      "Almond",
+      "Maple syrup"
+    ],
+    "example": "Gregorio Gomez",
+    "roaster": "Transcend",
+    "releaseId": "98",
+    "source": "Firstbloom"
+  },
+  "HND": {
+    "region": "Santa Barbara",
+    "varieties": [
+      "Catuai",
+      "Caturra"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Cherry",
+      "Brown sugar"
+    ],
+    "example": "Holiday Filter",
+    "roaster": "49th Parallel",
+    "releaseId": "88",
+    "source": "Firstbloom"
+  },
+  "IDN": {
+    "region": "Sumatra",
+    "varieties": [
+      "Catimor",
+      "Timor Hybrid"
+    ],
+    "tastingNotes": [
+      "Clove",
+      "Black pepper",
+      "Milk chocolate",
+      "Molasses"
+    ],
+    "example": "Sumatra Ketambe",
+    "roaster": "Reunion Coffee Roasters",
+    "releaseId": "317",
+    "source": "Firstbloom"
+  },
+  "IND": {
+    "region": "Karnataka",
+    "varieties": [
+      "Catuai"
+    ],
+    "tastingNotes": [
+      "Orange",
+      "Cola",
+      "Cherry",
+      "Tropical fruit"
+    ],
+    "example": "India Ratnagiri HP 14",
+    "roaster": "49th Parallel",
+    "releaseId": "2624",
+    "source": "Firstbloom"
+  },
+  "JAM": {
+    "region": "Blue Mountains",
+    "varieties": [
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Floral",
+      "Chocolate",
+      "Spice"
+    ],
+    "example": "Cafe Typica Jamaique Blue Mountain",
+    "roaster": "Brûlerie du Quai",
+    "releaseId": "4629",
+    "source": "Firstbloom"
+  },
+  "KEN": {
+    "region": "Nyeri",
+    "varieties": [
+      "SL34",
+      "SL28"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Almond",
+      "Floral"
+    ],
+    "example": "Kahuro AA+ Microlot",
+    "roaster": "Cantook Micro Torréfaction",
+    "releaseId": "91",
+    "source": "Firstbloom"
+  },
+  "LAO": {
+    "region": "Paksong",
+    "varieties": [
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Jasmine / Honeysuckle",
+      "Honey",
+      "Star fruit",
+      "Nut"
+    ],
+    "example": "Ms. Vone",
+    "roaster": "Onda Origins",
+    "releaseId": "2665",
+    "source": "Firstbloom"
+  },
+  "MDG": {
+    "region": "Itasy",
+    "varieties": [
+      "Yellow Bourbon"
+    ],
+    "tastingNotes": [
+      "Nut",
+      "Lime",
+      "Caramel",
+      "Lemon & Lemonade",
+      "Cantaloupe"
+    ],
+    "example": "Madagascar Yellow Bourbon Santatra Coop",
+    "roaster": "Paradise Coffee Roasters",
+    "releaseId": "3838",
+    "source": "Firstbloom"
+  },
+  "MEX": {
+    "region": "Chiapas",
+    "varieties": [
+      "Bourbon",
+      "Mundo Novo",
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Citrus",
+      "Brown sugar",
+      "Almond",
+      "Nut"
+    ],
+    "example": "Mexico Chiapas",
+    "roaster": "Brio Coffeeworks",
+    "releaseId": "173",
+    "source": "Firstbloom"
+  },
+  "MMR": {
+    "region": "Pinlaung",
+    "varieties": [
+      "Catuai",
+      "SL34",
+      "CR 8667"
+    ],
+    "tastingNotes": [
+      "Dark chocolate",
+      "Raspberry",
+      "Blackberry"
+    ],
+    "example": "Ha Ti Maung",
+    "roaster": "Rosso Coffee Roasters",
+    "releaseId": "635",
+    "source": "Firstbloom"
+  },
+  "MWI": {
+    "region": "Mzimba",
+    "varieties": [
+      "Catimor",
+      "Gesha"
+    ],
+    "tastingNotes": [
+      "Cherry",
+      "Orange",
+      "Dark chocolate"
+    ],
+    "example": "Malawi, Mzuzu Espresso",
+    "roaster": "Anchored Coffee",
+    "releaseId": "218",
+    "source": "Firstbloom"
+  },
+  "NIC": {
+    "region": "Matagalpa",
+    "varieties": [
+      "Bourbon"
+    ],
+    "tastingNotes": [
+      "Raspberry",
+      "Lime",
+      "Milk chocolate"
+    ],
+    "example": "Limon Arboles",
+    "roaster": "De Mello Palheta",
+    "releaseId": "100",
+    "source": "Firstbloom"
+  },
+  "PAN": {
+    "region": "Santa Clara",
+    "varieties": [
+      "Caturra",
+      "Catuai"
+    ],
+    "tastingNotes": [
+      "Tropical fruit",
+      "Dark chocolate",
+      "Red grape"
+    ],
+    "example": "Hartmann Blend",
+    "roaster": "Phil & Sebastian",
+    "releaseId": "273",
+    "source": "Firstbloom"
+  },
+  "PER": {
+    "region": "Cajamarca",
+    "varieties": [
+      "Caturra",
+      "Bourbon",
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Almond",
+      "Chocolate",
+      "Caramel"
+    ],
+    "example": "Perou Jaén",
+    "roaster": "94 Celcius",
+    "releaseId": "143",
+    "source": "Firstbloom"
+  },
+  "PNG": {
+    "region": "Waghi Valley",
+    "varieties": [
+      "Arusha",
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Spice",
+      "Caramel",
+      "Ginger"
+    ],
+    "example": "Papouasie Nouvelle Guinee Kunjin",
+    "roaster": "Nektar Torréfacteur",
+    "releaseId": "934",
+    "source": "Firstbloom"
+  },
+  "RWA": {
+    "region": "Gishamwana Island",
+    "varieties": [
+      "Bourbon"
+    ],
+    "tastingNotes": [
+      "Cacao nibs",
+      "Sugar cane",
+      "Caramel",
+      "Grapefruit"
+    ],
+    "example": "Rwanda Nyamasheke",
+    "roaster": "Everyday Gourmet Coffee Roasters",
+    "releaseId": "703",
+    "source": "Firstbloom"
+  },
+  "SLV": {
+    "region": "Apaneca Ilamatepec",
+    "varieties": [
+      "Bourbon",
+      "Pacas",
+      "Pacamara"
+    ],
+    "tastingNotes": [
+      "Lime",
+      "Tropical fruit",
+      "Milk chocolate"
+    ],
+    "example": "El Salvador Finca Ayutepeque",
+    "roaster": "Bluebarn",
+    "releaseId": "165",
+    "source": "Firstbloom"
+  },
+  "THA": {
+    "region": "Phetchabun",
+    "varieties": [
+      "Catimor",
+      "Typica",
+      "Yellow Bourbon"
+    ],
+    "tastingNotes": [
+      "Cacao nibs",
+      "Almond",
+      "Dark chocolate",
+      "Molasses"
+    ],
+    "example": "Thailand Phu Tub Berk",
+    "roaster": "Everyday Gourmet Coffee Roasters",
+    "releaseId": "854",
+    "source": "Firstbloom"
+  },
+  "TLS": {
+    "region": "Eratoi Village",
+    "varieties": [
+      "Timor Hybrid",
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Stone fruit",
+      "Almond",
+      "Brown sugar"
+    ],
+    "example": "Timor-Leste",
+    "roaster": "Pop Coffee Works",
+    "releaseId": "1364",
+    "source": "Firstbloom"
+  },
+  "TWN": {
+    "region": "Chiayi",
+    "varieties": [
+      "Gesha"
+    ],
+    "tastingNotes": [],
+    "source": "CQI"
+  },
+  "TZA": {
+    "region": "Mara",
+    "varieties": [
+      "N39"
+    ],
+    "tastingNotes": [
+      "Orange",
+      "Peach",
+      "Tropical fruit",
+      "Nut"
+    ],
+    "example": "Tarime",
+    "roaster": "Pilot",
+    "releaseId": "141",
+    "source": "Firstbloom"
+  },
+  "UGA": {
+    "region": "Kween District",
+    "varieties": [
+      "SL14",
+      "SL28",
+      "Blue Mountain"
+    ],
+    "tastingNotes": [
+      "Caramel",
+      "Peach",
+      "Plum"
+    ],
+    "example": "Uganda Kaproron Honey Processed",
+    "roaster": "Pop Coffee Works",
+    "releaseId": "942",
+    "source": "Firstbloom"
+  },
+  "USA": {
+    "region": "Hawaii",
+    "varieties": [
+      "Typica"
+    ],
+    "tastingNotes": [
+      "Black tea",
+      "Nut & Cocoa",
+      "Raisin"
+    ],
+    "example": "Rusty's Typica",
+    "roaster": "Passenger Coffee Roasting",
+    "releaseId": "1807",
+    "source": "Firstbloom"
+  },
+  "VNM": {
+    "region": "Quang Tri",
+    "varieties": [
+      "Catimor"
+    ],
+    "tastingNotes": [],
+    "source": "CQI"
+  },
+  "YEM": {
+    "region": "Eastern Haraaz",
+    "varieties": [
+      "Tuffahi",
+      "Dawairi",
+      "Jaadi"
+    ],
+    "tastingNotes": [
+      "Dried fig",
+      "Raisin",
+      "Strawberry"
+    ],
+    "example": "Mahal Aqueeq Ul Yemen",
+    "roaster": "George Howell Coffee",
+    "releaseId": "1035",
+    "source": "Firstbloom"
+  },
+  "ZMB": {
+    "region": "Mafinga Hills",
+    "varieties": [
+      "Catimor 129"
+    ],
+    "tastingNotes": [
+      "Dark chocolate",
+      "Black currant",
+      "Grapefruit"
+    ],
+    "example": "Masthead",
+    "roaster": "Typeface Coffee Roasters",
+    "releaseId": "1153",
+    "source": "Firstbloom"
+  }
+}

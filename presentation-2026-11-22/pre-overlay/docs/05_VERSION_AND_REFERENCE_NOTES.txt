@@ -1,0 +1,53 @@
+TASTE, SCORED — VERSION AND REFERENCE NOTES
+Original-page overlay edition, 22 November 2026.
+
+ACTIVE BASELINE
+Repository: https://github.com/xiqixu/Taste-Scored
+Commit: 826b13eb0c19e413987d040b2f5f3c6cd069a8c4
+Live original: https://xiqixu.github.io/Taste-Scored/
+Working derivative: C:\Users\ybb\Documents\ChatGPT\SM6351 Information Visualization\coffee-pre-overlay-2026-11-22
+Narrative files owned by this subtask: pre-overlay/content.json and pre-overlay/docs/.
+
+HISTORICAL MATERIAL — DO NOT REPLACE THE CURRENT VERSION
+E:\MFACM Courses 26-27\SM6351\Taste, scored04 is the older local website copy.
+coffee-final-presentation-2026-11-22 is the superseded separate five-page presentation approach.
+The user corrected that approach: keep the original webpage and add an optional Pre layer.
+The current content.json uses nodes, not pages. The ten nodes follow the original five acts and credits.
+Source ZIP snapshots, hashes and final packaging are managed by the main agent; use its final manifest as the complete artifact inventory.
+
+VERIFIED CHANGE RELEVANT TO NARRATION
+The latest dots.js no longer uses horizontal collision displacement for general score placement. It holds score x constant and computes vertical separation. The all-equal sweetness case overlaps the marks with an explicit common-score label.
+The narration and Q&A reflect that original-source change. This Pre layer is not credited with fixing the underlying chart.
+README retains the production world-total denominator and the documented production/trade preparation details used in the script.
+
+LATEST VISUAL AND LAYOUT REQUIREMENT
+The user subsequently requested light transparent frosted glass with dark text, and no overlap with any original page content. This takes precedence over the earlier dark-green panel reference. Pre mode reserves a separate narration region using temporary layout styles; original chart instances and source files remain. Exiting removes those overrides and restores the normal layout. Dragging and Auto place are removed. Responsive behavior is subject to the main task's final validation.
+Latest reference source: C:\Users\ybb\AppData\Local\Temp\codex-clipboard-9fd5f0a1-b7b3-49db-8cc2-bb01d46d1547.png
+Preserved copy: coffee-pre-overlay-archive-2026-11-22/references/transparent-glass-reference.png
+
+REFERENCE MATERIAL
+Course: user-supplied Final Project Presentation slide. Requirements preserved in 03_COURSE_COVERAGE_AND_DATA_NOTES.txt.
+Course/contest link: https://visstory.github.io/2027/
+Visual inspiration: https://pear.no/
+Pear screenshots: spacious serif typography, fine white leader line with endpoint, and a grain/dither dissolve edge. These guide an original implementation; do not claim the proprietary Pear shader was copied.
+Original user reference 02: C:\Users\ybb\AppData\Local\Temp\codex-clipboard-37613d1b-a828-438b-8441-f699716a15f9.png
+Original user reference 03: C:\Users\ybb\AppData\Local\Temp\codex-clipboard-70cd0573-545b-4e77-97cd-bfd31d30e3fd.png
+Previously preserved copies: coffee-presentation-archive-2026-11-22/references/02-pear-layout.png and references/03-pear-leader-lines.png.
+Course slide and noise screenshot remain visible in the conversation. The supplied temporary local paths were unavailable during initial archival; descriptions and requirements were preserved. The main agent handles any new image capture or backup.
+
+ATTRIBUTION
+xiqixu: website construction; overall storyline conception; visual style and aesthetic direction.
+rongxi: data collection/scraping; data cleaning and organisation; additional Act 3 content.
+No workload percentages were supplied.
+External sources and assets retain the original site's credits.
+Original site documents Claude starter-code/copy assistance, an OpenAI ImageGen botanical illustration and Mixkit video assets.
+Optional Pre-layer implementation and English narration assistance: Codex.
+Blender remains unverified and is not listed as a confirmed tool.
+
+SCHEMA AND CONSISTENCY
+content.json: meta plus ten nodes with id, section, title, summary, seconds, speakerNotes, bullets and sources.
+Total seconds: 600. Q&A: an additional 180 seconds.
+Each summary: at most 35 English words.
+Each source: label plus URL; local file URLs are relative to the original page, not this docs folder.
+The English script is generated from speakerNotes. Keep the two synchronized after wording changes.
+

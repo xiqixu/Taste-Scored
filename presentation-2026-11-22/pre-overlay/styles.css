@@ -1,0 +1,51 @@
+/* This stylesheet lives exclusively inside a ShadowRoot. It has no selectors
+   that reach or resize the original page, charts, typography or body. */
+:host { all:initial; position:fixed; inset:0; z-index:2147483000; pointer-events:none; color:#2c3029; font-family:'Segoe UI',Arial,sans-serif; font-size:16px; line-height:1.5; color-scheme:light; }
+*,*::before,*::after { box-sizing:border-box; }
+[hidden] { display:none!important; }
+button,input,select,summary { font:inherit; }
+button,select { color:#30362e; background:#ffffff36; border:1px solid #59644b40; border-radius:6px; padding:7px 10px; font-size:13px; cursor:pointer; }
+button:hover:not(:disabled) { background:#ffffff80; border-color:#59644b77; }
+button:disabled { opacity:.35; cursor:default; }
+button[aria-pressed="true"] { background:#ffffff9c; color:#232a21; border-color:#66705b77; box-shadow:inset 0 1px 0 #fff9; }
+button[aria-pressed="true"]:hover { background:#ffffffc9; color:#232a21; }
+button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible { outline:2px solid #766244; outline-offset:3px; }
+a { color:#53513d; text-decoration-thickness:1px; text-underline-offset:3px; }
+a:hover { color:#151c14; }
+.pre-panel { pointer-events:auto; position:fixed; top:16px; right:12px; width:min(365px,calc(100vw - 24px)); max-height:calc(100svh - 32px); display:flex; flex-direction:column; color:#2c3029; border:1px solid #ffffffa6; border-radius:18px; background:linear-gradient(118deg,#ffffff5c 0%,#ffffff14 42%,#ffffff38 100%); box-shadow:0 16px 48px #25301d24,inset 0 1px 0 #ffffff8c,inset -1px -1px 0 #ffffff26; backdrop-filter:blur(24px) saturate(.75); -webkit-backdrop-filter:blur(24px) saturate(.75); }
+.pre-drag-handle { display:flex; align-items:center; gap:8px; cursor:grab; touch-action:none; user-select:none; padding:12px 17px; border-bottom:1px solid #6c785129; flex:none; }
+.pre-drag-handle:active { cursor:grabbing; }
+.pre-grip { font-size:22px; line-height:1; color:#67705d; }
+.pre-label { font-size:10px; letter-spacing:1.5px; color:#535e48; }
+.pre-hide { margin-left:auto; font-size:12px; padding:4px 9px; }
+.pre-panel-scroll { flex:1 1 auto; min-height:0; padding:18px 23px 19px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#7d876d70 transparent; }
+.pre-panel-scroll::-webkit-scrollbar { width:5px; }.pre-panel-scroll::-webkit-scrollbar-thumb { background:#7d876d70; border-radius:4px; }
+.pre-meta { display:flex; justify-content:space-between; gap:10px; color:#555f4c; font-size:11px; letter-spacing:.5px; margin-bottom:12px; }
+#pre-title { font:normal 30px/1.12 Georgia,'Times New Roman',serif; letter-spacing:-.5px; margin:0 0 17px; color:#252b22; }
+.pre-summary { font-size:16px; line-height:1.5; margin:0 0 18px; color:#363f30; }
+.pre-cues { display:flex; flex-wrap:wrap; gap:6px; padding-bottom:15px; border-bottom:1px solid #6c785133; }
+.pre-cues button { font-size:12px; padding:6px 8px; }
+.pre-focus { font:17px/1.45 Georgia,'Times New Roman',serif; color:#2c3325; margin:15px 0 18px; }
+.pre-sources { display:flex; flex-wrap:wrap; gap:5px 12px; margin-top:17px; font-size:11px; line-height:1.6; }
+.pre-notes { margin-top:15px; font-size:13px; color:#505d46; }
+.pre-notes summary { cursor:pointer; width:max-content; }
+.pre-note-text { white-space:pre-line; margin-top:12px; font-size:14px; line-height:1.6; color:#384231; }
+.pre-free-scroll { font-size:11px; color:#55624c; margin:17px 0 0; }
+.pre-return-inline { color:#60523a; font-size:11px; padding:0; border:0; background:none; text-decoration:underline; text-underline-offset:3px; }
+.pre-team { margin:15px 0; padding-top:12px; border-top:1px solid #6c785133; }
+.pre-team div+div { margin-top:15px; }.pre-team dt { font:23px/1.15 Georgia,serif; color:#4f4530; }.pre-team dd { font-size:14px; line-height:1.55; margin:6px 0 0; color:#384231; }
+/* Navigation is the footer of the same glass panel, not a second card. */
+.pre-toolbar { flex:none; position:static; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:7px; padding:15px 23px 18px; border:0; border-top:1px solid #6c785129; color:#303829; background:none; box-shadow:none; }
+.pre-toolbar button,.pre-toolbar select { min-width:0; font-size:12px; white-space:nowrap; padding:7px 8px; }
+.pre-stop { grid-column:1 / -1; grid-row:1; width:100%; max-width:none; min-width:0; text-overflow:ellipsis; background:#ffffff59; }
+.pre-prev { grid-column:1; grid-row:2; }.pre-next { grid-column:2; grid-row:2; }
+.pre-stop option { color:#303829; background:#f0f1e7; }
+.pre-restore { pointer-events:auto; position:fixed; top:16px; right:12px; width:46px; min-height:36px; padding:7px 3px; font-size:12px; color:#303829; border:1px solid #ffffffa6; border-radius:8px; background:linear-gradient(118deg,#ffffff5c,#ffffff26); box-shadow:0 6px 18px #25301d1c; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); z-index:2; }
+.pre-lines { position:fixed; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; overflow:visible; }
+.pre-line-shadow { stroke:#152b22; stroke-width:3; stroke-opacity:.45; fill:none; }.pre-line { stroke:#fffef5; stroke-width:1.1; fill:none; }
+.pre-endpoint { fill:#19362a; stroke:#fffef5; stroke-width:1.3; }.pre-startpoint { fill:#fffef5; }
+.pre-panel { z-index:2; }
+.pre-dissolve { position:fixed; inset:0; z-index:4; display:none; pointer-events:none; }.pre-dissolve canvas { display:block; width:100%; height:100%; }
+@media(max-height:800px) and (min-width:701px) { .pre-panel{width:340px}.pre-panel-scroll{padding:15px 20px}.pre-toolbar{padding:13px 20px 16px}#pre-title{font-size:27px;margin-bottom:13px}.pre-summary{font-size:15px;line-height:1.4;margin-bottom:14px}.pre-focus{font-size:16px;margin:12px 0}.pre-cues{padding-bottom:12px}.pre-meta{margin-bottom:10px}.pre-sources{margin-top:12px}.pre-notes{margin-top:12px} }
+@media(max-width:700px) { .pre-panel{width:min(335px,calc(100vw - 24px))}.pre-toolbar{gap:6px;padding:13px 19px 16px}.pre-toolbar button,.pre-toolbar select{font-size:11px;padding:7px}.pre-panel-scroll{padding:15px 19px}#pre-title{font-size:27px}.pre-summary{font-size:15px}.pre-focus{font-size:16px}.pre-label{font-size:9px} }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.pre-dissolve{display:none!important}}

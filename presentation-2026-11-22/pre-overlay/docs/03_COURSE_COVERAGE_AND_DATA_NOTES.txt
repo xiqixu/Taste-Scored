@@ -1,0 +1,80 @@
+TASTE, SCORED — COURSE COVERAGE AND DATA NOTES
+Original-page overlay edition. Updated 22 November 2026 after user approval.
+Source baseline: 826b13eb0c19e413987d040b2f5f3c6cd069a8c4.
+
+CLASSROOM REQUIREMENTS
+The course slide specifies a ten-minute presentation plus approximately three-minute Q&A. The presentation must explain datasets, implemented visualizations, storyline/narration, tools/libraries and workload distribution. It should not merely play a video.
+This version presents these topics together at the chart where they matter. Ten stops follow the original five acts and credits; they are not ten pages. The actual charts, controls and scrolling story remain in the original DOM.
+The slide gives November 29 as the material-submission deadline and links to visstory.github.io. It does not require a separate presentation website or a named software stack.
+
+COVERAGE BY GUIDED STOP
+wheel (70s): BeanMap parent-child data, equal terminal weights, D3 hierarchy/partition/arcs, color and progressive disclosure; introduce taste vocabulary before scores.
+scores (80s): CQI source and 207 lots, recorded score positions, custom vertical collision checks, constant sweetness and sample coverage.
+production (65s): FAOSTAT 1961–2024, green-coffee tonnes, excluding aggregates, D3 geographic projection and fixed square-root area scale; expand from lots to national production.
+trade (65s): BACI product-code aggregation, directed SVG links, D3 projection, line width and the eight-largest-filtered-routes selection; follow movement after production.
+altitude (60s): 202 valid CQI lots and five missing records, D3 scatterplot, JavaScript least-squares line/Pearson correlation; inspect a weak association rather than assert causation.
+cherry (45s): highest-scoring Castillo lot (89.33), CSS artwork and Web Animations API; use visual continuity to connect a plotted point with a fruit.
+processing (55s): reference-derived method descriptions and layer states, shared HTML/CSS cutaway and JavaScript controls; explain categories already seen in score records.
+varieties (65s): selected WCR/Cenicafé relationships, SVG links, D3 score comparison and vertical packing; explain unequal counts and confounding.
+taste (60s): D3 six-axis radar, JavaScript Euclidean-distance matching, quality versus intensity and external-note attribution; finish with exploration.
+team (35s): exact contributor roles, GitHub Pages hosting and Three.js presentation-only dissolve.
+Total: 600 seconds. Q&A is additional.
+
+REQUIREMENT → EVIDENCE
+Data/dataset analysis → source and preparation explained within wheel, scores, production, trade, altitude, processing, varieties and taste.
+Implemented visualizations → original sunburst, beeswarm, production symbols, trade routes, scatterplot, fruit animation, processing cutaway, variety relationships and radar; the same views remain interactive.
+Storyline and narration → each stop explains its connection to the preceding view: vocabulary → scores → geography → altitude → fruit/process → varieties → personal exploration.
+Tools/libraries → D3 and SVG explained at their charts; JavaScript calculations at altitude/taste; CSS and Web Animations API at the cherry; HTML/CSS controls at processing; Three.js/GitHub Pages at delivery.
+Workload distribution → team at the original credits. No contribution percentages have been invented.
+
+DESIGN CONSIDERATIONS FROM THE COURSE SLIDE
+Overview: introduce vocabulary and the journey before moving into quantitative evidence.
+Length: one short summary plus one visible focus statement per stop. Speaker notes remain collapsed; select representative interactions rather than every control.
+Form and function: nesting for hierarchy, position for scores, circle area for production, directed links for trade and shared axes for comparisons.
+Eyes instead of memory: compare two varieties on one axis and attach the explanation to its current visual mark.
+2D and 3D: quantitative views stay flat; the WebGL effect is a transition, not another quantitative dimension.
+Immersion: the point-to-fruit animation bridges abstract evidence and physical context; the glass and grain retain the chosen visual atmosphere.
+These are design considerations, not mandatory effects or evidence that the assignment requires 3D.
+
+SUBMISSION BOUNDARY
+The provided course slide links to https://visstory.github.io/ for material submission. The present work updates the approved classroom narration; it does not submit the project or establish contest eligibility. Check the current official submission requirements separately before uploading final course/contest materials.
+
+DATA FACTS AND INTERPRETATION
+Flavor wheel: SCA/WCR-derived vocabulary via BeanMap, organised into a parent-child JSON tree with equal weight for each terminal term. D3 hierarchy/partition and SVG arcs form the rings. Sector sizes are not sampled flavor frequencies.
+CQI: 207 prepared Arabica lots, 22 origin labels, from a May 2023 public scrape. Median total 83.75, range 78–89.33. Taiwan contributes 61 lots (29.5%); 202 have altitude; all sweetness values are 10. The scrape date is not a common harvest year, and the tested sample is not representative of global production.
+Processing groups: Washed 127; Natural 46; Honey / pulped natural 26; Experimental 3; Not recorded 5.
+Production: 5,127 reporting-area/year records across 85 areas, 1961–2024, green coffee in tonnes. Select FAOSTAT item 656 and element 5510; exclude aggregates from mapped records; preserve source area IDs and flags; compare with OWID values. The national scope is broader than the Arabica lot sample.
+2024 denominator: mapped 78 entries sum to 11,133,143.04 tonnes. The separate FAOSTAT world total is 11,284,877.41 tonnes. Brazil plus Vietnam total 5,403,013 tonnes: approximately 47.9% of the world total, or 48.5% of the mapped sum. The concise approved narration does not use this share; retain these denominators if discussing the statistic in Q&A.
+Production geography: national reference locations; U.S. point over Hawaii; historic Ethiopia reporting placed at modern Ethiopia's symbol. Small locator rings identify low-volume producers and do not encode another production quantity.
+Trade: 106,684 annual exporter/importer records across 230 reporting areas, 1995–2024. Combine HS 090111 and 090112 from CEPII BACI HS92 v202601. Omit absent/zero quantities and specified unmapped reporting groups. Display at most eight largest routes within the current year/filter. Connections are not shipping paths; re-exports can appear in multiple records; imports do not directly measure final consumption.
+Variety comparison: Bourbon 17, Caturra 27, Typica 23, Gesha 27, Castillo 1. Relationship diagrams are selected educational links, not complete phylogenies. Unequal counts and differing origin/processing prevent causal ranking.
+Matching: six equal-weight quality-score dimensions and Euclidean distance, selecting five nearby CQI lots. It is not a validated model of personal liking or a sensory-intensity scale.
+External notes: Firstbloom or named roaster coffees from the same origin label. They describe another coffee, independently of production year and of the matched CQI batch.
+Altitude: 202 valid lots, five missing altitude values, Pearson r = 0.17559112175741268. D3 plots position; JavaScript calculates the least-squares line and correlation. This is a weak association, not a causal result.
+Cherry: the highest recorded lot is Colombian Castillo, 89.33. CSS artwork and the Web Animations API carry the point into an illustrative fruit. Three.js is not used to build this original fruit sequence.
+Processing illustration: reference-based method labels and fruit-layer states, shared HTML/CSS cutaway and JavaScript controls, not an estimated scoring effect.
+
+IMPORTANT VERSION CORRECTION: BEESWARM
+In commit 826b13e, js/charts/dots.js fixes each general score mark's x coordinate to its score scale and only chooses vertical positions for collision avoidance. The constant-sweetness case overlaps the 207 marks at the shared coordinate and explicitly labels the common value. Earlier reviews describing current horizontal score drift are obsolete for this source version.
+This correction is already in the downloaded original source; do not claim that the optional presentation layer repaired the chart.
+
+TOOLS AND CONTRIBUTIONS
+Original site: D3.js 7.9.0, SVG, HTML/CSS/JavaScript modules, Web Animations API, IntersectionObserver and GitHub Pages.
+Optional Pre layer: isolated narration UI, DOM anchor lines and lazily loaded Three.js/WebGL dissolve. The transition runs on an explicit guided-stop change; ordinary scrolling retains the original behavior. It does not create replacement charts.
+Blender: the user is unsure whether it was used; no authored asset is verified, so it is not listed as a confirmed tool.
+Existing credits: Claude helped with starter code/copy; the team reviewed and edited it. The Arabica branch was generated with OpenAI ImageGen. The original espresso uses credited Mixkit footage; the Pre talk relies on live interactions.
+Pre-layer implementation and narration assistance: Codex.
+Team roles supplied by user: xiqixu — website construction, overall storyline and visual/aesthetic direction; rongxi — data collection/scraping, cleaning/organisation and additional Act 3 content. No percentages have been invented.
+
+SOURCE POINTERS
+Project: https://github.com/xiqixu/Taste-Scored/tree/826b13eb0c19e413987d040b2f5f3c6cd069a8c4
+Preparation notes: ../../README.md
+CQI: https://github.com/fatih-boyar/coffee-quality-data-CQI
+FAOSTAT: https://www.fao.org/faostat/en/#data/QCL
+OWID: https://ourworldindata.org/grapher/coffee-bean-production
+BACI: https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37
+Firstbloom: https://github.com/alexcaza/firstbloom-data
+BeanMap: https://github.com/DouglasC2627/bean-map
+World Coffee Research: https://varieties.worldcoffeeresearch.org/
+Cenicafe: https://biblioteca.cenicafe.org/jspui/handle/10778/401
+Pear visual inspiration: https://pear.no/

@@ -1,0 +1,58 @@
+TASTE, SCORED — ORIGINAL-PAGE REHEARSAL CUES
+Ten chart-based stops, one webpage, 10 minutes plus Q&A.
+These are actions, not additional spoken script.
+
+BEFORE CLASS
+Open the original site with ?pre=1#act-wheel to enable the overlay at the wheel, or press P. Use H to collapse/expand the explanation and Escape to exit Pre mode.
+The chapter selector and Previous/Next buttons remain inside the glass card footer. No timer is displayed.
+Explicit Previous/Next or chapter selection triggers the dissolve. Ordinary scrolling follows the original story and synchronizes the explanation without that transition.
+Check the charts on the classroom screen. Pre mode reserves space for narration so it does not cover the charts or controls. Collapse the panel for more room if needed; exit restores normal layout.
+Do not open a separate presentation HTML page. Use the existing webpage. Skip the original espresso video if it appears at the ordinary homepage.
+Each stop has three focus choices; only the selected explanation and its corresponding guide line appear. Speaker notes are optional and remain collapsed unless opened.
+
+0:00–1:10 | WHEEL
+Introduce the project briefly at the original wheel. Scroll through families, groups and notes; use the exploration state to click one branch such as Fruity.
+Point to nesting, family color and the current focus. Explain equal terminal-term weighting, not sampled frequency.
+
+1:10–2:30 | SCORES
+Start with total score and hover one lot. Scroll through the original score states; this should synchronize the overlay without a dissolve.
+For sweetness, point to the shared score/count rather than imply different x values. Explain Taiwan's 61/207 sample share.
+
+2:30–3:35 | PRODUCTION
+Inspect the production area key. Change one year and return to the year you wish to discuss.
+Distinguish national production from the CQI lot sample and a national reference position from a farm coordinate.
+
+3:35–4:40 | TRADE
+Select a route to reveal direction and quantity. Try one partner/direction filter if time permits.
+Point to the route count and explain that at most eight largest filtered routes are visible.
+
+4:40–5:40 | ALTITUDE
+At the altitude scatterplot, point to the axes, trend line and correlation annotation.
+Explain that five missing-altitude records are excluded. State weak association, not causation.
+
+5:40–6:25 | CHERRY
+Follow the original point-to-cherry sequence. Identify the selected lot as Castillo, 89.33.
+Explain that CSS and browser animation preserve visual continuity; the fruit is illustrative.
+
+6:25–7:20 | PROCESSING
+Use the existing method controls to compare Washed and Natural; show Honey if time permits.
+Explain which layers change while the geometry remains familiar. Do not claim a measured score increase.
+
+7:20–8:25 | VARIETIES
+Compare Bourbon and Caturra on the shared score axis. If time allows, select Castillo to illustrate its one-record limit.
+Explain one relationship type in the diagram rather than every variety.
+
+8:25–9:25 | TASTE
+Move one of the six sliders and inspect a resulting lot. Point to the radar and separate external-flavor attribution.
+Explain quality-score similarity, not guaranteed personal preference or intensity.
+
+9:25–10:00 | TEAM
+Read both contributor roles. Mention GitHub Pages and the presentation-only Three.js transition.
+Remain at credits for approximately three minutes of Q&A.
+
+PACING
+The spoken script contains 1,189 words. At approximately 135 words per minute, narration takes about 8 minutes 49 seconds, leaving about 71 seconds for brief interactions and pauses.
+The per-stop timings are rehearsal targets, not visible timers. If running late, shorten year/filter changes and avoid opening every source.
+Preserve distinctions between data units, quality and intensity, illustrative examples and matched-lot evidence. Keep the required contributor roles at the end.
+
+
