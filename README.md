@@ -1,5 +1,6 @@
 # Taste, scored.
 The live link: https://xiqixu.github.io/Taste-Scored/
+The presentation link: https://xiqixu.github.io/Taste-Scored/presentation-2026-11-22/
 
 Run `python3 -m http.server 8000` from this folder and open
 [Act 3 in the local preview](http://localhost:8000/#act3-production).
