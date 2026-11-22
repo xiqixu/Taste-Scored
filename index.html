@@ -15,7 +15,7 @@
 
   <!-- D3 v7 as a global `d3` (no build step needed) -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-  <script type="module" src="js/main.js?v=flavor-notes"></script>
+  <script type="module" src="js/main.js?v=exact-scores"></script>
   <script type="module" src="js/scene.js?v=espresso"></script>
   <script type="module" src="js/espresso-intro.js?v=home-playback"></script>
   <script type="module" src="js/bean-nav.js?v=beans"></script>
@@ -234,12 +234,14 @@
               collection of good coffees, not a sample of all coffee.</p>
           </div>
           <div class="step" data-state="swarm:sweetness">
-            <p>The total adds up ten boxes. Some of them hardly vary at all.
-              Every single lot scored 10 out of 10 for sweetness.</p>
+            <p>All <span data-stat="lots">207</span> lots received the maximum
+              sweetness score of 10.0. Under the cupping protocol used here,
+              each cup that meets the sweetness criterion earns two points,
+              up to ten.</p>
           </div>
           <div class="step" data-state="swarm:acidity">
-            <p>The real differences live in the boxes graders judge by taste,
-              like acidity. Here the same coffees spread out.</p>
+            <p>Acidity scores vary across the same lots. Each dot sits at its
+              recorded score, and dots stack vertically to keep every lot visible.</p>
           </div>
           <div class="step" id="act2-process-scores" data-state="swarm:total:process">
             <p>Each coloured dot is one cup-tested lot. The legend counts the

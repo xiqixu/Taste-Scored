@@ -5,7 +5,7 @@
 // (VS Code "Live Server", or `python3 -m http.server`), not by double-clicking.
 
 import { createWheel } from "./charts/wheel.js";
-import { createDots } from "./charts/dots.js?v=coffee-cherry";
+import { createDots } from "./charts/dots.js?v=exact-scores";
 import { createCherryScene } from "./charts/cherry-scene.js?v=halves";
 import { createProcessDemo } from "./charts/process-demo.js?v=halves";
 import { createProductionMap } from "./charts/production-map.js?v=levels";
